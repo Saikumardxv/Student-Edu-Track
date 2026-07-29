@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CalendarCheck, Calendar, Clock, Loader2, Save, CheckCircle, AlertCircle } from 'lucide-react';
+import { CalendarCheck, Calendar, Loader2, Save, AlertCircle } from 'lucide-react';
 import api from '../../utils/api';
 import Toast, { ToastMessage } from '../../components/Toast';
 
