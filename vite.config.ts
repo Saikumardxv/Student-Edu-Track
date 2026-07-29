@@ -1,17 +1,21 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+
+  // Required for GitHub Pages
+  base: "/Student-Edutrack/",
+
   server: {
     port: 5173,
     proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
+      "/api": {
+        target: "http://localhost:5000",
         changeOrigin: true,
       },
-      '/uploads': {
-        target: 'http://localhost:5000',
+      "/uploads": {
+        target: "http://localhost:5000",
         changeOrigin: true,
       },
     },
