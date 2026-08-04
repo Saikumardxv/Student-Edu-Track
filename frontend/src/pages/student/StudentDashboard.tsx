@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  GraduationCap, CalendarCheck, Clock, BellRing, 
-  MapPin, AlertTriangle, ArrowRight, Loader2, Award, Calendar
+  CalendarCheck, Clock, BellRing, 
+  MapPin, AlertTriangle, ArrowRight, Award, Calendar
 } from 'lucide-react';
 import api from '../../utils/api';
 import { CardSkeleton } from '../../components/Skeleton';

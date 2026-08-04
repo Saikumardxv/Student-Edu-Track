@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell
 } from 'recharts';
 import { BarChart3, TrendingUp, Award, UserX, Loader2 } from 'lucide-react';
@@ -140,7 +140,7 @@ const AdminReports: React.FC = () => {
                     dataKey="count"
                     nameKey="grade"
                   >
-                    {(marksData?.gradeDistribution || []).map((entry, index) => (
+                   {(marksData?.gradeDistribution || []).map((_entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
@@ -200,7 +200,7 @@ const AdminReports: React.FC = () => {
           
           <div className="divide-y divide-slate-850/60 text-sm">
             {marksData?.topPerformers && marksData.topPerformers.length > 0 ? (
-              marksData.topPerformers.map((perf, index) => (
+              marksData.topPerformers.map((perf) => (
                 <div key={perf.rollNumber} className="flex justify-between items-center py-3">
                   <div>
                     <span className="font-semibold text-slate-200">{perf.studentName}</span>

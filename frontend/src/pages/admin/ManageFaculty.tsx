@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   GraduationCap, Search, Filter, Plus, Edit2, 
-  X, Loader2, BookOpen, AlertTriangle
+  X, Loader2, BookOpen
 } from 'lucide-react';
 import api from '../../utils/api';
 import { TableSkeleton } from '../../components/Skeleton';

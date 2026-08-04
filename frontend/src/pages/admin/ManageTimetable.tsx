@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Calendar, Building2, BookOpen, Plus, Trash2, Save, Loader2, Clock, MapPin
+  Calendar, Building2, Plus, Trash2, Save, Loader2, Clock, MapPin
 } from 'lucide-react';
 import api from '../../utils/api';
 import Toast, { ToastMessage } from '../../components/Toast';

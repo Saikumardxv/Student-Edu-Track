@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { School, Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 
@@ -138,6 +138,18 @@ const Login: React.FC = () => {
                 'Sign In'
               )}
             </button>
+            <div className="mt-4 text-center">
+                 <span className="text-gray-400">
+                   New User?{" "}
+                 </span>
+ 
+                 <Link
+                    to="/register"
+                    className="text-purple-500 hover:text-purple-400 font-semibold"
+                  >
+                    Register Here
+                  </Link>
+                </div>
           </form>
 
 

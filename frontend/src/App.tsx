@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -7,8 +7,8 @@ import Navbar from './components/Navbar';
 
 // Shared Pages
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Profile from './pages/Profile';
-
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageStudents from './pages/admin/ManageStudents';
@@ -83,7 +83,7 @@ function App() {
         <Routes>
           {/* Public Route */}
           <Route path="/login" element={<Login />} />
-
+          <Route path="/register" element={<Register />} />
           {/* Protected Routes inside Layout */}
           <Route element={<ProtectedRoute />}>
             <Route element={<DashboardLayout />}>

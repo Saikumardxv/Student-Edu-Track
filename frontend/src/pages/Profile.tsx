@@ -69,7 +69,8 @@ const Profile: React.FC = () => {
     try {
       const response = await api.put('/student/profile', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          // Let axios set the correct multipart boundaries automatically.
+          // Avoid manually setting Content-Type when using FormData.
         },
       });
 

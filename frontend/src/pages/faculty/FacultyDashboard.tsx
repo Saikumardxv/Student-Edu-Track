@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   BookOpen, Calendar, Clock, MapPin, 
-  Loader2, ArrowRight, CalendarCheck, FileSpreadsheet, Plus 
+  Loader2, ArrowRight, CalendarCheck, FileSpreadsheet 
 } from 'lucide-react';
 import api from '../../utils/api';
 import Toast, { ToastMessage } from '../../components/Toast';
