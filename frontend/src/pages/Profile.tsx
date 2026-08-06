@@ -136,10 +136,10 @@ const Profile: React.FC = () => {
         {/* Left Column: Avatar & Summary */}
         <div className="w-full md:w-1/3 flex flex-col items-center p-6 glass-panel rounded-2xl text-center h-fit relative">
           {/* Accent border glow */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/40 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/40 to-transparent" />
           
           <div className="relative group cursor-pointer mb-4" onClick={triggerFileInput}>
-            <div className="h-28 w-28 overflow-hidden rounded-full border-2 border-slate-700 bg-slate-800 flex items-center justify-center shadow-lg transition-all group-hover:border-brand-500">
+            <div className="h-28 w-28 overflow-hidden rounded-full border-2 border-slate-700 bg-slate-800 flex items-center justify-center shadow-lg transition-all group-hover:border-slate-400">
               {photoPreview ? (
                 <img src={photoPreview} alt={user.name} className="h-full w-full object-cover" />
               ) : (
@@ -160,7 +160,7 @@ const Profile: React.FC = () => {
           />
 
           <h3 className="text-xl font-bold text-slate-100">{user.name}</h3>
-          <p className="text-xs font-semibold text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-full border border-brand-500/20 mt-2">
+          <p className="text-xs font-semibold text-slate-300 bg-slate-900/80 px-2.5 py-1 rounded-full border border-slate-800 mt-2">
             {user.role}
           </p>
 
@@ -202,7 +202,7 @@ const Profile: React.FC = () => {
               onClick={() => setActiveTab('info')}
               className={`flex-1 py-4 text-center text-sm font-semibold transition-colors border-b-2
                 ${activeTab === 'info' 
-                  ? 'border-brand-500 text-brand-400 bg-brand-500/5' 
+                  ? 'border-slate-400 text-slate-100 bg-slate-900/80' 
                   : 'border-transparent text-slate-400 hover:text-slate-200'}`}
             >
               Personal Info
@@ -211,7 +211,7 @@ const Profile: React.FC = () => {
               onClick={() => setActiveTab('security')}
               className={`flex-1 py-4 text-center text-sm font-semibold transition-colors border-b-2
                 ${activeTab === 'security' 
-                  ? 'border-brand-500 text-brand-400 bg-brand-500/5' 
+                  ? 'border-slate-400 text-slate-100 bg-slate-900/80' 
                   : 'border-transparent text-slate-400 hover:text-slate-200'}`}
             >
               Security Settings
@@ -222,7 +222,7 @@ const Profile: React.FC = () => {
             {activeTab === 'info' ? (
               <form onSubmit={handleInfoSubmit} className="space-y-6">
                 <h4 className="text-lg font-bold text-slate-200 flex items-center gap-2 mb-4">
-                  <UserIcon className="h-5 w-5 text-brand-400" />
+                  <UserIcon className="h-5 w-5 text-slate-300" />
                   Edit Profile Information
                 </h4>
                 
@@ -262,7 +262,7 @@ const Profile: React.FC = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg active:scale-95 transition-all disabled:opacity-50"
+                    className="flex items-center gap-2 rounded-lg bg-slate-800 hover:bg-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-100 shadow-lg active:scale-95 transition-all disabled:opacity-50"
                   >
                     {loading ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
@@ -276,7 +276,7 @@ const Profile: React.FC = () => {
             ) : (
               <form onSubmit={handleSecuritySubmit} className="space-y-6">
                 <h4 className="text-lg font-bold text-slate-200 flex items-center gap-2 mb-4">
-                  <Key className="h-5 w-5 text-brand-400" />
+                  <Key className="h-5 w-5 text-slate-300" />
                   Change Password
                 </h4>
 
@@ -325,7 +325,7 @@ const Profile: React.FC = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg active:scale-95 transition-all disabled:opacity-50"
+                    className="flex items-center gap-2 rounded-lg bg-slate-800 hover:bg-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-100 shadow-lg active:scale-95 transition-all disabled:opacity-50"
                   >
                     {loading ? (
                       <Loader2 className="h-4 w-4 animate-spin" />

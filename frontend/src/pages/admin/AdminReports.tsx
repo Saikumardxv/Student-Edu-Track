@@ -47,9 +47,9 @@ const AdminReports: React.FC = () => {
   const [toast, setToast] = useState<ToastMessage | null>(null);
 
   // Curated color themes for recharts
-  const COLORS = ['#8b5cf6', '#a78bfa', '#6d28d9', '#c4b5fd', '#3b82f6', '#10b981', '#f43f5e'];
-  const BAR_COLOR_1 = '#8b5cf6'; // Violet
-  const BAR_COLOR_2 = '#3b82f6'; // Blue
+  const COLORS = ['#f8fafc', '#e2e8f0', '#cbd5e1', '#94a3b8', '#64748b', '#475569', '#334155'];
+  const BAR_COLOR_1 = '#cbd5e1';
+  const BAR_COLOR_2 = '#94a3b8';
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -75,8 +75,7 @@ const AdminReports: React.FC = () => {
     return (
       <div className="flex h-[500px] items-center justify-center">
         <div className="flex flex-col items-center gap-2">
-          <Loader2 className="h-10 w-10 animate-spin text-brand-500" />
-          <p className="text-sm text-slate-500">Generating analytics metrics...</p>
+          <Loader2 className="h-10 w-10 animate-spin text-slate-300" />
         </div>
       </div>
     );
@@ -86,7 +85,7 @@ const AdminReports: React.FC = () => {
     <div className="space-y-8 font-sans animate-fade-in">
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-          <BarChart3 className="h-8 w-8 text-brand-500" />
+          <BarChart3 className="h-8 w-8 text-slate-100" />
           Reports & Performance Analytics
         </h1>
         <p className="text-slate-400 text-sm mt-1">
@@ -99,9 +98,9 @@ const AdminReports: React.FC = () => {
         
         {/* Department Attendance */}
         <div className="glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col min-h-[350px]">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
           <h3 className="text-base font-bold text-slate-200 mb-6 flex items-center gap-2">
-            <TrendingUp className="h-4.5 w-4.5 text-brand-400" />
+            <TrendingUp className="h-4.5 w-4.5 text-slate-100" />
             Average Attendance Percentage by Department
           </h3>
           <div className="flex-1 w-full min-h-[250px]">
@@ -113,7 +112,7 @@ const AdminReports: React.FC = () => {
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
                   labelStyle={{ fontWeight: 'bold', color: '#cbd5e1' }}
-                  itemStyle={{ color: '#a78bfa' }}
+                  itemStyle={{ color: '#cbd5e1' }}
                 />
                 <Bar dataKey="averageAttendance" fill={BAR_COLOR_2} radius={[4, 4, 0, 0]} name="Attendance %" />
               </BarChart>
@@ -123,7 +122,7 @@ const AdminReports: React.FC = () => {
 
         {/* Grade Distribution */}
         <div className="glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col min-h-[350px]">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
           <h3 className="text-base font-bold text-slate-200 mb-6">Grade Distribution (System-wide)</h3>
           
           <div className="flex-1 flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -146,7 +145,7 @@ const AdminReports: React.FC = () => {
                   </Pie>
                   <Tooltip 
                     contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
-                    itemStyle={{ color: '#cbd5e1' }}
+                      itemStyle={{ color: '#cbd5e1' }}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -167,7 +166,7 @@ const AdminReports: React.FC = () => {
 
       {/* Row 2: Subject Average Marks */}
       <div className="glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col min-h-[380px]">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+<div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
         <h3 className="text-base font-bold text-slate-200 mb-6">Subject Average Marks (Out of 100)</h3>
         
         <div className="flex-1 w-full min-h-[280px]">
@@ -179,7 +178,7 @@ const AdminReports: React.FC = () => {
               <Tooltip 
                 contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }}
                 labelStyle={{ fontWeight: 'bold', color: '#cbd5e1' }}
-                itemStyle={{ color: '#f43f5e' }}
+                itemStyle={{ color: '#cbd5e1' }}
               />
               <Bar dataKey="averageMark" fill={BAR_COLOR_1} radius={[4, 4, 0, 0]} name="Average Score" />
             </BarChart>
@@ -192,9 +191,9 @@ const AdminReports: React.FC = () => {
         
         {/* Top Performers */}
         <div className="glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
-          <h3 className="text-base font-bold text-emerald-400 mb-4 flex items-center gap-2">
-            <Award className="h-5 w-5 text-emerald-400" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
+          <h3 className="text-base font-bold text-slate-200 mb-4 flex items-center gap-2">
+            <Award className="h-5 w-5 text-slate-100" />
             Academic Performers (Top 5)
           </h3>
           
@@ -206,7 +205,7 @@ const AdminReports: React.FC = () => {
                     <span className="font-semibold text-slate-200">{perf.studentName}</span>
                     <p className="text-[10px] text-slate-500 mt-0.5">{perf.rollNumber} • {perf.deptCode}</p>
                   </div>
-                  <span className="font-extrabold text-brand-400 bg-brand-500/10 border border-brand-500/20 px-2.5 py-0.5 rounded text-xs">
+                  <span className="font-extrabold text-slate-100 bg-slate-800/60 border border-slate-700 px-2.5 py-0.5 rounded text-xs">
                     {perf.gpa}% Avg
                   </span>
                 </div>
@@ -219,9 +218,9 @@ const AdminReports: React.FC = () => {
 
         {/* Low Performers (Warning List) */}
         <div className="glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-500/20 to-transparent" />
-          <h3 className="text-base font-bold text-rose-400 mb-4 flex items-center gap-2">
-            <UserX className="h-5 w-5 text-rose-400" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
+          <h3 className="text-base font-bold text-slate-200 mb-4 flex items-center gap-2">
+            <UserX className="h-5 w-5 text-slate-100" />
             Performance Focus List (Bottom 5)
           </h3>
           
@@ -233,7 +232,7 @@ const AdminReports: React.FC = () => {
                     <span className="font-semibold text-slate-200">{perf.studentName}</span>
                     <p className="text-[10px] text-slate-500 mt-0.5">{perf.rollNumber} • {perf.deptCode}</p>
                   </div>
-                  <span className="font-extrabold text-rose-400 bg-rose-500/10 border border-rose-500/20 px-2.5 py-0.5 rounded text-xs">
+                  <span className="font-extrabold text-slate-100 bg-slate-800/60 border border-slate-700 px-2.5 py-0.5 rounded text-xs">
                     {perf.gpa}% Avg
                   </span>
                 </div>

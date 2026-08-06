@@ -195,4 +195,118 @@ router.post('/refresh', async (req: Request, res: Response) => {
   }
 });
 
+// Public: Fetch available departments for registration
+router.get('/departments', async (req: Request, res: Response) => {
+  try {
+    const departments = await prisma.department.findMany({
+      select: {
+        id: true,
+        name: true,
+        code: true,
+      },
+      orderBy: { name: 'asc' },
+    });
+    return res.status(200).json(departments);
+  } catch (error: any) {
+    console.error('Get departments error:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Public: Fetch semesters for registration
+router.get('/semesters', async (req: Request, res: Response) => {
+  try {
+    const semesters = await prisma.semester.findMany({
+      select: {
+        id: true,
+        number: true,
+        year: true,
+      },
+      orderBy: { number: 'asc' },
+    });
+    return res.status(200).json(semesters);
+  } catch (error: any) {
+    console.error('Get semesters error:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Public: Register a new student account
+router.post('/register', async (req: Request, res: Response) => {
+  const { name, email, password, rollNumber, departmentId, currentSemester } = req.body;
+
+  if (!name || !email || !password || !rollNumber || !departmentId || !currentSemester) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  try {
+    const existingUser = await prisma.user.findUnique({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already registered' });
+    }
+
+    const existingRoll = await prisma.student.findUnique({ where: { rollNumber } });
+    if (existingRoll) {
+      return res.status(400).json({ message: 'Roll number already exists' });
+    }
+
+    const department = await prisma.department.findUnique({ where: { id: Number(departmentId) } });
+    if (!department) {
+      return res.status(400).json({ message: 'Invalid department selected' });
+    }
+
+    const semester = await prisma.semester.findUnique({ where: { id: Number(currentSemester) } });
+    if (!semester) {
+      return res.status(400).json({ message: 'Invalid semester selected' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const student = await prisma.$transaction(async (tx) => {
+      const user = await tx.user.create({
+        data: {
+          name,
+          email,
+          password: hashedPassword,
+          role: 'STUDENT',
+          departmentId: department.id,
+        },
+      });
+
+      const newStudent = await tx.student.create({
+        data: {
+          userId: user.id,
+          rollNumber,
+          departmentId: department.id,
+          currentSemester: Number(currentSemester),
+        },
+      });
+
+      const subjects = await tx.subject.findMany({
+        where: {
+          departmentId: department.id,
+          semesterId: Number(currentSemester),
+        },
+      });
+
+      if (subjects.length > 0) {
+        await tx.enrollment.createMany({
+          data: subjects.map((subject) => ({
+            studentId: newStudent.id,
+            subjectId: subject.id,
+            semesterId: Number(currentSemester),
+          })),
+        });
+      }
+
+      return newStudent;
+    });
+
+    return res.status(201).json({ message: 'Registration successful', student });
+  } catch (error: any) {
+    console.error('Registration error:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 export default router;

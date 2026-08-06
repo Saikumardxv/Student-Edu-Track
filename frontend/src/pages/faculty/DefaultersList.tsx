@@ -82,7 +82,7 @@ const DefaultersList: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <AlertTriangle className="h-8 w-8 text-rose-500" />
+            <AlertTriangle className="h-8 w-8 text-slate-500" />
             Attendance Defaulters List
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -93,7 +93,7 @@ const DefaultersList: React.FC = () => {
 
       {/* Select Subject Panel */}
       <div className="glass-panel p-6 rounded-2xl relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/20 to-transparent" />
         
         <div className="space-y-2">
           <label className="text-xs font-semibold uppercase text-slate-400">Select Course</label>
@@ -120,7 +120,7 @@ const DefaultersList: React.FC = () => {
 
       {selectedSubjectId ? (
         <div className="glass-panel p-6 rounded-2xl flex flex-col relative overflow-hidden shadow-xl">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-500/30 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/30 to-transparent" />
 
           {/* Header */}
           <div className="pb-4 mb-4 border-b border-slate-800/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -128,7 +128,7 @@ const DefaultersList: React.FC = () => {
               <h3 className="text-base font-bold text-slate-200">
                 Low Attendance Log - {selectedSubject?.name} ({selectedSubject?.department.code})
               </h3>
-              <p className="text-xs text-rose-400/80 mt-1 flex items-center gap-1">
+              <p className="text-xs text-slate-300400/80 mt-1 flex items-center gap-1">
                 <AlertCircle className="h-3 w-3" />
                 Highlighting student enrollments with attendance &lt; 75.0%
               </p>
@@ -150,7 +150,7 @@ const DefaultersList: React.FC = () => {
           {/* Roster list */}
           {loadingReport ? (
             <div className="flex flex-col items-center justify-center py-20">
-              <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-slate-500" />
               <p className="text-xs text-slate-500 mt-2">Running audit scan...</p>
             </div>
           ) : filteredDefaulters.length > 0 ? (
@@ -168,15 +168,15 @@ const DefaultersList: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-800/60 text-sm">
                   {filteredDefaulters.map((row) => (
-                    <tr key={row.studentId} className="hover:bg-rose-950/5 hover:border-l-4 hover:border-l-rose-500/20 transition-all">
-                      <td className="py-3.5 px-4 font-semibold text-rose-350">
+                    <tr key={row.studentId} className="hover:bg-slate-900/5 hover:border-l-4 hover:border-l-slate-800/20 transition-all">
+                      <td className="py-3.5 px-4 font-semibold text-slate-350">
                         {row.rollNumber}
                       </td>
                       <td className="py-3.5 px-4 text-slate-200 font-medium">
                         {row.name}
                       </td>
                       <td className="py-3.5 px-4 text-slate-450">
-                        <a href={`mailto:${row.email}`} className="flex items-center gap-1.5 hover:text-brand-350 transition-colors">
+                        <a href={`mailto:${row.email}`} className="flex items-center gap-1.5 hover:text-slate-350 transition-colors">
                           <Mail className="h-3.5 w-3.5" />
                           {row.email}
                         </a>
@@ -184,11 +184,11 @@ const DefaultersList: React.FC = () => {
                       <td className="py-3.5 px-4 text-center text-slate-300 font-semibold">
                         {row.totalClasses}
                       </td>
-                      <td className="py-3.5 px-4 text-center text-emerald-400 font-semibold">
+                      <td className="py-3.5 px-4 text-center text-slate-400 font-semibold">
                         {row.presentClasses}
                       </td>
                       <td className="py-3.5 px-4 text-center">
-                        <span className="text-xs font-extrabold text-rose-400 bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded-full">
+                        <span className="text-xs font-extrabold text-slate-400 bg-slate-900/10 border border-slate-800500/20 px-2.5 py-1 rounded-full">
                           {row.attendancePercentage}%
                         </span>
                       </td>

@@ -50,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     user.role === 'FACULTY' ? facultyLinks : 
     studentLinks;
 
-  const activeClass = 'bg-brand-600/35 text-brand-300 border-l-4 border-brand-500 font-semibold';
+  const activeClass = 'bg-slate-800/70 text-slate-100 border-l-4 border-slate-400 font-semibold';
   const inactiveClass = 'text-slate-400 hover:bg-slate-900/60 hover:text-slate-200 border-l-4 border-transparent';
 
   return (
@@ -70,8 +70,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         {/* Sidebar Header */}
         <div className="flex h-16 items-center justify-between px-6 border-b border-slate-800/80">
           <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-brand-600 to-violet-500 shadow-md shadow-brand-500/20">
-              <School className="h-5 w-5 text-white" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-800 shadow-md shadow-slate-950/30">
+              <School className="h-5 w-5 text-slate-100" />
             </div>
             <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent font-sans">
               EduTrack
@@ -90,17 +90,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           {links.map((link) => {
             const Icon = link.icon;
             return (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                onClick={onClose}
-                className={({ isActive }) => `
-                  flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150
-                  ${isActive ? activeClass : inactiveClass}
-                `}
-              >
-                <Icon className="h-4 w-4 shrink-0" />
-                {link.label}
+              <NavLink key={link.to} to={link.to} onClick={onClose}>
+                {({ isActive }) => (
+                  <div className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150 ${isActive ? activeClass : inactiveClass}`}>
+                    <Icon className={`h-4 w-4 shrink-0 ${isActive ? 'icon-accent' : 'icon-muted'}`} />
+                    <span>{link.label}</span>
+                  </div>
+                )}
               </NavLink>
             );
           })}
@@ -125,7 +121,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               )}
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-slate-200 group-hover:text-brand-300 transition-colors">
+              <p className="truncate text-sm font-semibold text-slate-200 group-hover:text-slate-100 transition-colors">
                 {user.name}
               </p>
               <p className="truncate text-xs text-slate-500">
@@ -136,7 +132,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
           <button
             onClick={logout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-all font-medium"
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-slate-200 hover:bg-slate-800 hover:text-white transition-all font-medium"
           >
             <LogOut className="h-4 w-4 shrink-0" />
             Sign Out

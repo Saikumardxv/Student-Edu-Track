@@ -54,7 +54,7 @@ const TimetableView: React.FC = () => {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-          <Calendar className="h-8 w-8 text-brand-500" />
+          <Calendar className="h-8 w-8 text-slate-100" />
           Weekly Class Timetable
         </h1>
         <p className="text-slate-400 text-sm mt-1">
@@ -70,7 +70,7 @@ const TimetableView: React.FC = () => {
             onClick={() => setActiveDayTab(day)}
             className={`px-4 py-2 rounded-xl text-sm font-semibold tracking-wide transition-all shrink-0 border border-transparent ${
               activeDayTab === day
-                ? 'bg-brand-600 text-white shadow-lg shadow-brand-500/15'
+                ? 'bg-slate-800 text-slate-100 shadow-lg shadow-slate-900/40'
                 : 'bg-slate-900/50 text-slate-400 hover:text-slate-200 border-slate-800/80 hover:bg-slate-900'
             }`}
           >
@@ -82,7 +82,7 @@ const TimetableView: React.FC = () => {
       {/* Slots List */}
       {loading ? (
         <div className="flex h-[250px] items-center justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-slate-300" />
         </div>
       ) : activeDaySlots.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -92,12 +92,12 @@ const TimetableView: React.FC = () => {
               className="glass-panel p-5 rounded-2xl relative overflow-hidden flex flex-col justify-between hover:border-slate-700/80 transition-all shadow-lg group"
             >
               {/* Left accent strip */}
-              <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-brand-500 group-hover:bg-brand-450 transition-colors" />
+              <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-slate-700 transition-colors" />
               
               <div className="space-y-3">
                 <div className="flex justify-between items-start gap-2">
                   <div>
-                    <span className="text-[9px] font-bold tracking-wide uppercase bg-slate-900 border border-slate-850 px-2 py-0.5 rounded text-brand-400">
+                    <span className="text-[9px] font-bold tracking-wide uppercase bg-slate-900 border border-slate-850 px-2 py-0.5 rounded text-slate-200">
                       {slot.subjectCode}
                     </span>
                     <h3 className="text-base font-bold text-slate-250 mt-2 leading-relaxed">

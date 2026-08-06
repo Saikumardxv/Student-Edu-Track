@@ -1,0 +1,121 @@
+from pathlib import Path
+
+root = Path(__file__).resolve().parent.parent / "src"
+replacements = {
+    "text-brand-": "text-slate-100",
+    "text-rose-": "text-slate-300",
+    "text-emerald-": "text-slate-300",
+    "text-amber-": "text-slate-300",
+    "text-violet-": "text-slate-300",
+    "text-blue-": "text-slate-300",
+    "text-indigo-": "text-slate-300",
+    "text-green-": "text-slate-300",
+    "text-teal-": "text-slate-300",
+    "text-pink-": "text-slate-300",
+    "text-orange-": "text-slate-300",
+    "text-purple-": "text-slate-300",
+    "text-fuchsia-": "text-slate-300",
+    "text-cyan-": "text-slate-300",
+    "bg-brand-": "bg-slate-800",
+    "bg-rose-": "bg-slate-900/10",
+    "bg-emerald-": "bg-slate-900/10",
+    "bg-amber-": "bg-slate-900/10",
+    "bg-violet-": "bg-slate-900/10",
+    "bg-blue-": "bg-slate-900/10",
+    "bg-indigo-": "bg-slate-900/10",
+    "bg-green-": "bg-slate-900/10",
+    "bg-teal-": "bg-slate-900/10",
+    "bg-pink-": "bg-slate-900/10",
+    "bg-orange-": "bg-slate-900/10",
+    "bg-purple-": "bg-slate-900/10",
+    "bg-fuchsia-": "bg-slate-900/10",
+    "bg-cyan-": "bg-slate-900/10",
+    "border-brand-": "border-slate-700",
+    "border-rose-": "border-slate-800",
+    "border-emerald-": "border-slate-800",
+    "border-amber-": "border-slate-800",
+    "border-violet-": "border-slate-800",
+    "border-blue-": "border-slate-800",
+    "border-indigo-": "border-slate-800",
+    "border-green-": "border-slate-800",
+    "border-teal-": "border-slate-800",
+    "border-pink-": "border-slate-800",
+    "border-orange-": "border-slate-800",
+    "border-purple-": "border-slate-800",
+    "border-fuchsia-": "border-slate-800",
+    "border-cyan-": "border-slate-800",
+    "shadow-brand-": "shadow-slate-900/10",
+    "shadow-rose-": "shadow-slate-900/10",
+    "shadow-emerald-": "shadow-slate-900/10",
+    "shadow-amber-": "shadow-slate-900/10",
+    "shadow-violet-": "shadow-slate-900/10",
+    "shadow-blue-": "shadow-slate-900/10",
+    "shadow-indigo-": "shadow-slate-900/10",
+    "shadow-green-": "shadow-slate-900/10",
+    "shadow-teal-": "shadow-slate-900/10",
+    "shadow-pink-": "shadow-slate-900/10",
+    "shadow-orange-": "shadow-slate-900/10",
+    "shadow-purple-": "shadow-slate-900/10",
+    "shadow-fuchsia-": "shadow-slate-900/10",
+    "shadow-cyan-": "shadow-slate-900/10",
+    "from-brand-": "from-slate-700",
+    "via-brand-": "via-slate-700",
+    "to-brand-": "to-slate-700",
+    "from-rose-": "from-slate-700",
+    "via-rose-": "via-slate-700",
+    "to-rose-": "to-slate-700",
+    "from-emerald-": "from-slate-700",
+    "via-emerald-": "via-slate-700",
+    "to-emerald-": "to-slate-700",
+    "from-amber-": "from-slate-700",
+    "via-amber-": "via-slate-700",
+    "to-amber-": "to-slate-700",
+    "from-violet-": "from-slate-700",
+    "via-violet-": "via-slate-700",
+    "to-violet-": "to-slate-700",
+    "from-blue-": "from-slate-700",
+    "via-blue-": "via-slate-700",
+    "to-blue-": "to-slate-700",
+    "from-indigo-": "from-slate-700",
+    "via-indigo-": "via-slate-700",
+    "to-indigo-": "to-slate-700",
+    "from-green-": "from-slate-700",
+    "via-green-": "via-slate-700",
+    "to-green-": "to-slate-700",
+    "from-teal-": "from-slate-700",
+    "via-teal-": "via-slate-700",
+    "to-teal-": "to-slate-700",
+    "from-pink-": "from-slate-700",
+    "via-pink-": "via-slate-700",
+    "to-pink-": "to-slate-700",
+    "from-orange-": "from-slate-700",
+    "via-orange-": "via-slate-700",
+    "to-orange-": "to-slate-700",
+    "from-purple-": "from-slate-700",
+    "via-purple-": "via-slate-700",
+    "to-purple-": "to-slate-700",
+    "from-fuchsia-": "from-slate-700",
+    "via-fuchsia-": "via-slate-700",
+    "to-fuchsia-": "to-slate-700",
+    "from-cyan-": "from-slate-700",
+    "via-cyan-": "via-slate-700",
+    "to-cyan-": "to-slate-700",
+}
+
+ordered = sorted(replacements.items(), key=lambda item: -len(item[0]))
+files = sorted(root.rglob("*.tsx")) + sorted(root.rglob("*.ts"))
+changed = []
+for file_path in files:
+    text = file_path.read_text(encoding="utf-8")
+    new_text = text
+    for old, new in ordered:
+        new_text = new_text.replace(old, new)
+    new_text = new_text.replace("bg-white", "bg-slate-900")
+    new_text = new_text.replace("text-black", "text-slate-100")
+    if new_text != text:
+        file_path.write_text(new_text, encoding="utf-8")
+        changed.append(str(file_path.relative_to(root.parent)))
+
+print(f"Changed {len(changed)} files")
+for path in changed:
+    print(path)

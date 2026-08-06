@@ -191,7 +191,7 @@ const ManageTimetable: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <Calendar className="h-8 w-8 text-brand-500" />
+            <Calendar className="h-8 w-8 text-slate-500" />
             Timetable Planner
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -202,7 +202,7 @@ const ManageTimetable: React.FC = () => {
 
       {/* Target Config Panel */}
       <div className="glass-panel p-6 rounded-2xl relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/20 to-transparent" />
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -253,10 +253,10 @@ const ManageTimetable: React.FC = () => {
           
           {/* Add Slot Draft Form */}
           <div className="glass-panel p-6 rounded-2xl h-fit relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/30 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/30 to-transparent" />
             
             <h3 className="text-base font-bold text-slate-200 flex items-center gap-2 mb-4 border-b border-slate-800/80 pb-3">
-              <Plus className="h-5 w-5 text-brand-400" />
+              <Plus className="h-5 w-5 text-slate-400" />
               Add Class Slot
             </h3>
 
@@ -277,7 +277,7 @@ const ManageTimetable: React.FC = () => {
                   ))}
                 </select>
                 {filteredSubjects.length === 0 && (
-                  <p className="text-[10px] text-amber-500 italic mt-1">
+                  <p className="text-[10px] text-slate-500 italic mt-1">
                     No subjects registered for this semester yet.
                   </p>
                 )}
@@ -336,7 +336,7 @@ const ManageTimetable: React.FC = () => {
 
               <button
                 type="submit"
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-850 py-2.5 font-semibold text-brand-400 active:scale-95 transition-all mt-6"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-850 py-2.5 font-semibold text-slate-400 active:scale-95 transition-all mt-6"
               >
                 <Plus className="h-4 w-4" />
                 Add Slot to Draft
@@ -346,17 +346,17 @@ const ManageTimetable: React.FC = () => {
 
           {/* Draft & Active Schedule List */}
           <div className="lg:col-span-2 glass-panel p-6 rounded-2xl flex flex-col relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/30 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/30 to-transparent" />
             
             <div className="flex justify-between items-center pb-4 mb-4 border-b border-slate-800/80">
               <h3 className="text-base font-bold text-slate-200 flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-brand-400" />
+                <Calendar className="h-5 w-5 text-slate-400" />
                 Schedule Drafts ({slots.length} slots)
               </h3>
               <button
                 onClick={handlePublishTimetable}
                 disabled={saving}
-                className="flex items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-500 px-4 py-2 text-xs font-semibold text-white shadow-lg active:scale-95 transition-all disabled:opacity-50"
+                className="flex items-center gap-2 rounded-lg bg-slate-600 hover:bg-slate-500 px-4 py-2 text-xs font-semibold text-white shadow-lg active:scale-95 transition-all disabled:opacity-50"
               >
                 {saving ? (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -370,7 +370,7 @@ const ManageTimetable: React.FC = () => {
             <div className="flex-1 space-y-3 max-h-[500px] overflow-y-auto pr-2">
               {loadingSlots ? (
                 <div className="flex flex-col items-center justify-center py-20">
-                  <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+                  <Loader2 className="h-8 w-8 animate-spin text-slate-500" />
                   <p className="text-xs text-slate-500 mt-2">Loading timetable slots...</p>
                 </div>
               ) : slots.length > 0 ? (
@@ -381,7 +381,7 @@ const ManageTimetable: React.FC = () => {
                   >
                     <div className="space-y-1.5">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-bold uppercase bg-brand-500/10 text-brand-400 border border-brand-500/20 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-bold uppercase bg-slate-800500/10 text-slate-400 border border-slate-700500/20 px-1.5 py-0.5 rounded">
                           {slot.subjectCode}
                         </span>
                         <span className="font-semibold text-slate-200 text-sm">{slot.subjectName}</span>
@@ -404,7 +404,7 @@ const ManageTimetable: React.FC = () => {
 
                     <button
                       onClick={() => handleDeleteLocalSlot(index)}
-                      className="p-2 rounded-lg text-slate-500 hover:bg-rose-500/10 hover:text-rose-400 transition-colors"
+                      className="p-2 rounded-lg text-slate-500 hover:bg-slate-900/10 hover:text-slate-400 transition-colors"
                       title="Remove Slot"
                     >
                       <Trash2 className="h-4 w-4" />

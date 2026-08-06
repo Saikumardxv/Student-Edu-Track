@@ -136,7 +136,7 @@ const MarkAttendance: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <CalendarCheck className="h-8 w-8 text-brand-500" />
+            <CalendarCheck className="h-8 w-8 text-slate-500" />
             Mark Attendance
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -147,7 +147,7 @@ const MarkAttendance: React.FC = () => {
 
       {/* Select Subject & Date Panel */}
       <div className="glass-panel p-6 rounded-2xl relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/20 to-transparent" />
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -190,7 +190,7 @@ const MarkAttendance: React.FC = () => {
 
       {selectedSubjectId ? (
         <div className="glass-panel p-6 rounded-2xl flex flex-col relative overflow-hidden shadow-xl">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/30 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/30 to-transparent" />
 
           {/* Table Toolbar */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 mb-4 border-b border-slate-800/80">
@@ -207,7 +207,7 @@ const MarkAttendance: React.FC = () => {
               <button
                 type="button"
                 onClick={() => markAllAs('PRESENT')}
-                className="rounded-lg bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 px-3 py-1.5 text-xs font-semibold text-emerald-400 transition-colors"
+                className="rounded-lg bg-slate-900/10 border border-slate-800500/20 hover:bg-slate-900/20 px-3 py-1.5 text-xs font-semibold text-slate-400 transition-colors"
                 disabled={loadingSheet || submitting}
               >
                 Mark All Present
@@ -215,7 +215,7 @@ const MarkAttendance: React.FC = () => {
               <button
                 type="button"
                 onClick={() => markAllAs('ABSENT')}
-                className="rounded-lg bg-rose-500/10 border border-rose-500/20 hover:bg-rose-500/20 px-3 py-1.5 text-xs font-semibold text-rose-400 transition-colors"
+                className="rounded-lg bg-slate-900/10 border border-slate-800500/20 hover:bg-slate-900/20 px-3 py-1.5 text-xs font-semibold text-slate-400 transition-colors"
                 disabled={loadingSheet || submitting}
               >
                 Mark All Absent
@@ -226,7 +226,7 @@ const MarkAttendance: React.FC = () => {
           {/* Student List Grid */}
           {loadingSheet ? (
             <div className="flex flex-col items-center justify-center py-20">
-              <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-slate-500" />
               <p className="text-xs text-slate-500 mt-2">Loading roster...</p>
             </div>
           ) : studentsList.length > 0 ? (
@@ -256,7 +256,7 @@ const MarkAttendance: React.FC = () => {
                               onClick={() => handleStatusChange(row.studentId, 'PRESENT')}
                               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
                                 row.status === 'PRESENT'
-                                  ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40 shadow-sm shadow-emerald-500/5'
+                                  ? 'bg-slate-900/20 text-slate-400 border-slate-800500/40 shadow-sm shadow-slate-900/5'
                                   : 'bg-slate-950/45 text-slate-500 border-slate-900 hover:text-slate-350 hover:bg-slate-900/30'
                               }`}
                             >
@@ -267,7 +267,7 @@ const MarkAttendance: React.FC = () => {
                               onClick={() => handleStatusChange(row.studentId, 'LATE')}
                               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
                                 row.status === 'LATE'
-                                  ? 'bg-amber-500/20 text-amber-400 border-amber-500/40 shadow-sm shadow-amber-500/5'
+                                  ? 'bg-slate-900/20 text-slate-400 border-slate-800500/40 shadow-sm shadow-slate-900/5'
                                   : 'bg-slate-950/45 text-slate-500 border-slate-900 hover:text-slate-350 hover:bg-slate-900/30'
                               }`}
                             >
@@ -278,7 +278,7 @@ const MarkAttendance: React.FC = () => {
                               onClick={() => handleStatusChange(row.studentId, 'ABSENT')}
                               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
                                 row.status === 'ABSENT'
-                                  ? 'bg-rose-500/20 text-rose-400 border-rose-500/40 shadow-sm shadow-rose-500/5'
+                                  ? 'bg-slate-900/20 text-slate-400 border-slate-800500/40 shadow-sm shadow-slate-900/5'
                                   : 'bg-slate-950/45 text-slate-500 border-slate-900 hover:text-slate-350 hover:bg-slate-900/30'
                               }`}
                             >
@@ -298,7 +298,7 @@ const MarkAttendance: React.FC = () => {
                   type="button"
                   onClick={handleSaveAttendance}
                   disabled={submitting}
-                  className="flex items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg active:scale-95 transition-all disabled:opacity-50"
+                  className="flex items-center gap-2 rounded-lg bg-slate-600 hover:bg-slate-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg active:scale-95 transition-all disabled:opacity-50"
                 >
                   {submitting ? (
                     <Loader2 className="h-4 w-4 animate-spin" />

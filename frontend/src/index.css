@@ -5,7 +5,14 @@
 @layer base {
   body {
     font-family: 'Inter', sans-serif;
-    @apply bg-slate-950 text-slate-100;
+      /* cream / white minimalist light theme defaults */
+      --bg: #f7f3ec; /* warm cream page background */
+      --surface: #ffffff; /* card/panel surface */
+      --accent: #0b1220; /* primary text / accent (dark) */
+      --accent-foreground: #ffffff; /* text on accent backgrounds */
+      --accent-muted: #6b7280; /* muted gray for secondary text/icons */
+      background-color: var(--bg);
+      color: var(--accent);
   }
 
   h1,
@@ -16,6 +23,83 @@
   h6 {
     font-family: 'Outfit', sans-serif;
   }
+}
+
+@layer utilities {
+  /* Force any color-prefixed text utilities to white for a strict monochrome theme */
+  [class*="text-brand-"], [class*="text-violet-"], [class*="text-fuchsia-"], [class*="text-cyan-"],
+  [class*="text-rose-"], [class*="text-emerald-"], [class*="text-amber-"], [class*="text-blue-"],
+  [class*="text-indigo-"], [class*="text-orange-"], [class*="text-green-"], [class*="text-teal-"],
+  [class*="text-purple-"], [class*="text-pink-"] {
+    color: var(--accent) !important;
+  }
+
+  /* Force any color-prefixed backgrounds to the surface color */
+  [class*="bg-brand-"], [class*="bg-violet-"], [class*="bg-fuchsia-"], [class*="bg-cyan-"],
+  [class*="bg-rose-"], [class*="bg-emerald-"], [class*="bg-amber-"], [class*="bg-blue-"],
+  [class*="bg-indigo-"], [class*="bg-orange-"], [class*="bg-green-"], [class*="bg-teal-"],
+  [class*="bg-purple-"], [class*="bg-pink-"] {
+    background-color: var(--surface) !important;
+  }
+
+  /* Force any color-prefixed borders to a subtle white overlay */
+  [class*="border-brand-"], [class*="border-violet-"], [class*="border-fuchsia-"], [class*="border-cyan-"],
+  [class*="border-rose-"], [class*="border-emerald-"], [class*="border-amber-"], [class*="border-blue-"],
+  [class*="border-indigo-"], [class*="border-orange-"], [class*="border-green-"], [class*="border-teal-"],
+  [class*="border-purple-"], [class*="border-pink-"] {
+    border-color: rgba(255,255,255,0.04) !important;
+  }
+
+  /* Remove colored shadows for strict mono theme */
+  [class*="shadow-brand-"], [class*="shadow-violet-"], [class*="shadow-fuchsia-"], [class*="shadow-cyan-"],
+  [class*="shadow-rose-"], [class*="shadow-emerald-"], [class*="shadow-amber-"], [class*="shadow-blue-"],
+  [class*="shadow-indigo-"], [class*="shadow-orange-"], [class*="shadow-green-"], [class*="shadow-teal-"],
+  [class*="shadow-purple-"], [class*="shadow-pink-"] {
+    box-shadow: none !important;
+  }
+
+  /* Disable color gradients and force surface color for gradient utilities */
+  [class*="from-"], [class*="via-"], [class*="to-"] {
+    background-image: none !important;
+    background-color: var(--surface) !important;
+  }
+}
+
+/* Theme helpers */
+:root {
+  /* defaults already set on body for older browsers */
+}
+
+.btn-accent {
+  background-color: var(--accent) !important;
+  color: var(--accent-foreground) !important;
+  border: 1px solid rgba(11,18,32,0.06);
+}
+.btn-accent:hover {
+  opacity: 0.95;
+}
+
+.icon-accent {
+  color: var(--accent) !important;
+}
+.icon-muted {
+  color: var(--accent-muted) !important;
+}
+
+.theme-light {
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --accent: #0f172a;
+  --accent-foreground: #ffffff;
+  --accent-muted: #64748b;
+}
+
+.theme-dark {
+  --bg: #0b1120;
+  --surface: #0f172a;
+  --accent: #64748b;
+  --accent-foreground: #ffffff;
+  --accent-muted: #94a3b8;
 }
 
 /* Scrollbar */
@@ -38,23 +122,25 @@
 
 /* Glassmorphism */
 .glass-panel {
-  @apply bg-slate-900/50 backdrop-blur-md border border-slate-800/80 shadow-xl;
+  background-color: var(--surface);
+  backdrop-filter: none;
+  border: 1px solid rgba(11,18,32,0.06);
+  box-shadow: none;
 }
 
 .glass-card {
-  @apply bg-slate-900/40 backdrop-blur-md border border-slate-800/60 shadow-lg transition-all duration-300 hover:bg-slate-900/60;
+  background-color: var(--surface);
+  border: 1px solid rgba(11,18,32,0.04);
+  box-shadow: none;
+  transition: transform .18s ease, background-color .18s ease;
 }
 
 .glass-input {
-  @apply bg-slate-950/50
-         border
-         border-slate-800
-         rounded-lg
-         py-2
-         px-3
-         focus:outline-none
-         focus:ring-2
-         focus:ring-blue-500;
+  background-color: #ffffff;
+  border: 1px solid rgba(11,18,32,0.06);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--accent);
 }
 
 /* Animations */
@@ -88,13 +174,13 @@
 
 /* Badges */
 .badge-present {
-  @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500;
+  @apply bg-slate-800/60 text-slate-200 border border-slate-700;
 }
 
 .badge-absent {
-  @apply bg-rose-500/10 text-rose-400 border border-rose-500;
+  @apply bg-slate-800/60 text-slate-200 border border-slate-700;
 }
 
 .badge-late {
-  @apply bg-amber-500/10 text-amber-400 border border-amber-500;
+  @apply bg-slate-800/60 text-slate-200 border border-slate-700;
 }

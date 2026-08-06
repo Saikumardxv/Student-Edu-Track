@@ -34,7 +34,7 @@ const NoticesView: React.FC = () => {
     return (
       <div className="flex h-[400px] items-center justify-center">
         <div className="flex flex-col items-center gap-2">
-          <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-slate-300" />
           <p className="text-xs text-slate-550">Syncing notice board announcements...</p>
         </div>
       </div>
@@ -46,7 +46,7 @@ const NoticesView: React.FC = () => {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-          <BellRing className="h-8 w-8 text-brand-500" />
+          <BellRing className="h-8 w-8 text-slate-100" />
           Announcements & Notice Board
         </h1>
         <p className="text-slate-400 text-sm mt-1">
@@ -63,10 +63,10 @@ const NoticesView: React.FC = () => {
               className="glass-panel p-6 rounded-2xl border border-slate-800 shadow-lg relative overflow-hidden group hover:border-slate-700/80 transition-all duration-300"
             >
               {/* Top gradient glow bar */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/20 to-transparent" />
               
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-850 pb-3 mb-4">
-                <h3 className="text-lg font-bold text-slate-200 group-hover:text-brand-350 transition-colors">
+                <h3 className="text-lg font-bold text-slate-200 transition-colors">
                   {notice.title}
                 </h3>
                 

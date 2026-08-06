@@ -71,7 +71,7 @@ const FacultyDashboard: React.FC = () => {
     return (
       <div className="flex h-[400px] items-center justify-center">
         <div className="flex flex-col items-center gap-2">
-          <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-slate-500" />
           <p className="text-xs text-slate-550">Loading dashboard contents...</p>
         </div>
       </div>
@@ -95,10 +95,10 @@ const FacultyDashboard: React.FC = () => {
         
         {/* Today's Schedule (2 cols on large screen) */}
         <div className="lg:col-span-2 glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col min-h-[350px]">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/20 to-transparent" />
           
           <h3 className="text-base font-bold text-slate-200 mb-6 flex items-center gap-2 border-b border-slate-800/80 pb-3">
-            <Clock className="h-5 w-5 text-brand-400" />
+            <Clock className="h-5 w-5 text-slate-400" />
             Schedule for Today ({data?.todayClasses.length || 0} Classes)
           </h3>
 
@@ -111,7 +111,7 @@ const FacultyDashboard: React.FC = () => {
                 >
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-bold tracking-wide uppercase bg-slate-900 text-brand-400 border border-slate-850 px-2 py-0.5 rounded">
+                      <span className="text-[9px] font-bold tracking-wide uppercase bg-slate-900 text-slate-400 border border-slate-850 px-2 py-0.5 rounded">
                         {cls.subject.code}
                       </span>
                       <span className="font-semibold text-slate-200 text-sm">{cls.subject.name}</span>
@@ -132,7 +132,7 @@ const FacultyDashboard: React.FC = () => {
 
                   <button
                     onClick={() => navigate('/faculty/attendance', { state: { subjectId: cls.id, autoSelect: true } })}
-                    className="flex items-center gap-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 px-3.5 py-2 text-xs font-semibold text-white transition-all active:scale-95 shrink-0 w-fit"
+                    className="flex items-center gap-1.5 rounded-lg bg-slate-600 hover:bg-slate-500 px-3.5 py-2 text-xs font-semibold text-white transition-all active:scale-95 shrink-0 w-fit"
                   >
                     <CalendarCheck className="h-4 w-4" />
                     Mark Attendance
@@ -150,7 +150,7 @@ const FacultyDashboard: React.FC = () => {
 
         {/* Quick Operations Widget */}
         <div className="glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-violet-500/25 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/25 to-transparent" />
           
           <h3 className="text-base font-bold text-slate-200 mb-6 border-b border-slate-800/80 pb-3">
             Quick Actions
@@ -159,34 +159,34 @@ const FacultyDashboard: React.FC = () => {
           <div className="space-y-3 flex-1 flex flex-col justify-center">
             <button
               onClick={() => navigate('/faculty/attendance')}
-              className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-850 hover:border-brand-500/30 text-left transition-all group"
+              className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-850 hover:border-slate-700500/30 text-left transition-all group"
             >
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-lg bg-emerald-550/10 flex items-center justify-center border border-emerald-500/20">
-                  <CalendarCheck className="h-5 w-5 text-emerald-400" />
+                <div className="h-9 w-9 rounded-lg bg-slate-900/10 flex items-center justify-center border border-slate-800500/20">
+                  <CalendarCheck className="h-5 w-5 text-slate-400" />
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold text-slate-200">Roll Call</h4>
                   <p className="text-[10px] text-slate-500 mt-0.5">Submit attendance logs</p>
                 </div>
               </div>
-              <ArrowRight className="h-4 w-4 text-slate-650 group-hover:text-brand-400 transition-colors" />
+              <ArrowRight className="h-4 w-4 text-slate-650 group-hover:text-slate-400 transition-colors" />
             </button>
 
             <button
               onClick={() => navigate('/faculty/marks')}
-              className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-850 hover:border-brand-500/30 text-left transition-all group"
+              className="flex items-center justify-between p-4 rounded-xl bg-slate-900/40 hover:bg-slate-900/80 border border-slate-850 hover:border-slate-700500/30 text-left transition-all group"
             >
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-lg bg-blue-550/10 flex items-center justify-center border border-blue-500/20">
-                  <FileSpreadsheet className="h-5 w-5 text-blue-400" />
+                <div className="h-9 w-9 rounded-lg bg-slate-900/10 flex items-center justify-center border border-slate-800500/20">
+                  <FileSpreadsheet className="h-5 w-5 text-slate-400" />
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold text-slate-200">Upload Grades</h4>
                   <p className="text-[10px] text-slate-500 mt-0.5">Upload exam grade sheets</p>
                 </div>
               </div>
-              <ArrowRight className="h-4 w-4 text-slate-650 group-hover:text-brand-400 transition-colors" />
+              <ArrowRight className="h-4 w-4 text-slate-650 group-hover:text-slate-400 transition-colors" />
             </button>
           </div>
         </div>
@@ -195,11 +195,11 @@ const FacultyDashboard: React.FC = () => {
 
       {/* Recent Marks Entry Panel */}
       <div className="glass-panel p-6 rounded-2xl relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/25 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/25 to-transparent" />
         
         <div className="flex justify-between items-center pb-4 mb-4 border-b border-slate-800/80">
           <h3 className="text-base font-bold text-slate-200 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-brand-400" />
+            <BookOpen className="h-5 w-5 text-slate-400" />
             Recent Grade Submissions
           </h3>
         </div>
@@ -218,8 +218,8 @@ const FacultyDashboard: React.FC = () => {
                   </div>
                   <span className={`font-extrabold text-xs px-2.5 py-0.5 rounded border
                     ${mk.grade === 'F' 
-                      ? 'bg-rose-500/10 text-rose-400 border-rose-500/25' 
-                      : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25'}`}
+                      ? 'bg-slate-900/10 text-slate-400 border-slate-800500/25' 
+                      : 'bg-slate-900/10 text-slate-400 border-slate-800500/25'}`}
                   >
                     Grade {mk.grade}
                   </span>

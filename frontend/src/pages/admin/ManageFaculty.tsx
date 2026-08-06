@@ -174,7 +174,7 @@ const ManageFaculty: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <GraduationCap className="h-8 w-8 text-brand-500" />
+            <GraduationCap className="h-8 w-8 text-slate-500" />
             Manage Faculty
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -186,7 +186,7 @@ const ManageFaculty: React.FC = () => {
             clearForm();
             setIsAddModalOpen(true);
           }}
-          className="flex items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/10 active:scale-95 transition-all"
+          className="flex items-center gap-2 rounded-lg bg-slate-600 hover:bg-slate-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 active:scale-95 transition-all"
         >
           <Plus className="h-4 w-4" />
           Add Faculty
@@ -256,7 +256,7 @@ const ManageFaculty: React.FC = () => {
                       {fac.user.email}
                     </td>
                     <td className="py-4 px-6">
-                      <span className="text-xs font-medium bg-slate-900 border border-slate-800 px-2 py-1 rounded text-brand-300">
+                      <span className="text-xs font-medium bg-slate-900 border border-slate-800 px-2 py-1 rounded text-slate-300">
                         {fac.department.code}
                       </span>
                     </td>
@@ -266,7 +266,7 @@ const ManageFaculty: React.FC = () => {
                           fac.subjects.map((sub) => (
                             <span 
                               key={sub.id} 
-                              className="text-[10px] font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20 px-2 py-0.5 rounded-full"
+                              className="text-[10px] font-semibold bg-slate-800500/10 text-slate-400 border border-slate-700500/20 px-2 py-0.5 rounded-full"
                               title={sub.name}
                             >
                               {sub.code}
@@ -306,7 +306,7 @@ const ManageFaculty: React.FC = () => {
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 animate-fade-in">
           <div className="glass-panel w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl relative">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/50 to-transparent" />
             
             <div className="flex justify-between items-center p-6 border-b border-slate-800/80 bg-slate-900/20">
               <h3 className="text-lg font-bold text-slate-200">Appoint Academic Staff</h3>
@@ -396,7 +396,7 @@ const ManageFaculty: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-500/10"
+                  className="flex items-center gap-1.5 rounded-lg bg-slate-600 hover:bg-slate-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-900/10"
                   disabled={submitting}
                 >
                   {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
@@ -412,7 +412,7 @@ const ManageFaculty: React.FC = () => {
       {isEditModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 animate-fade-in">
           <div className="glass-panel w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl relative">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/50 to-transparent" />
             
             <div className="flex justify-between items-center p-6 border-b border-slate-800/80 bg-slate-900/20">
               <h3 className="text-lg font-bold text-slate-200">Update Faculty Details</h3>
@@ -484,7 +484,7 @@ const ManageFaculty: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-500/10"
+                  className="flex items-center gap-1.5 rounded-lg bg-slate-600 hover:bg-slate-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-900/10"
                   disabled={submitting}
                 >
                   {submitting && <Loader2 className="h-4 w-4 animate-spin" />}

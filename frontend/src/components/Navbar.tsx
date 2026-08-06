@@ -46,7 +46,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
 
       <div className="flex items-center gap-4">
         <div className="hidden items-center gap-2 rounded-lg bg-slate-900/50 px-3 py-1.5 border border-slate-800 text-xs text-slate-400 md:flex">
-          <CalendarDays className="h-4 w-4 text-brand-400" />
+          <CalendarDays className="h-4 w-4 text-slate-400" />
           <span>{today}</span>
         </div>
 
@@ -55,7 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuToggle }) => {
           className="relative rounded-lg p-2 text-slate-400 hover:bg-slate-900 hover:text-white transition-colors border border-slate-900 hover:border-slate-800"
         >
           <Bell className="h-5 w-5" />
-          <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-brand-500 animate-pulse border border-slate-950" />
+          <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-slate-400 animate-pulse border border-slate-950" />
         </button>
 
         <button

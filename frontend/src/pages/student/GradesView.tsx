@@ -46,7 +46,7 @@ const GradesView: React.FC = () => {
     return (
       <div className="flex h-[400px] items-center justify-center">
         <div className="flex flex-col items-center gap-2">
-          <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-slate-300" />
           <p className="text-xs text-slate-550">Loading academic records...</p>
         </div>
       </div>
@@ -62,7 +62,7 @@ const GradesView: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <FileSpreadsheet className="h-8 w-8 text-brand-500" />
+            <FileSpreadsheet className="h-8 w-8 text-slate-100" />
             Grades & GPA Card
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -72,8 +72,8 @@ const GradesView: React.FC = () => {
 
         {/* Big GPA highlight */}
         <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 px-5 py-3 rounded-2xl shrink-0">
-          <div className="h-10 w-10 rounded-xl bg-brand-500/10 border border-brand-500/25 flex items-center justify-center">
-            <Award className="h-5 w-5 text-brand-400" />
+          <div className="h-10 w-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+            <Award className="h-5 w-5 text-slate-100" />
           </div>
           <div>
             <span className="text-[10px] font-bold uppercase text-slate-500 tracking-wider">Cumulative GPA</span>
@@ -85,7 +85,7 @@ const GradesView: React.FC = () => {
       {/* Main Table */}
       {grades.length > 0 ? (
         <div className="glass-panel rounded-2xl overflow-hidden border border-slate-800 shadow-xl relative">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/30 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/30 to-transparent" />
           
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
@@ -115,7 +115,7 @@ const GradesView: React.FC = () => {
                     <td className="py-3.5 px-4 text-center text-slate-400">
                       Sem {item.semester}
                     </td>
-                    <td className="py-3.5 px-4 text-center font-bold text-brand-400">
+                    <td className="py-3.5 px-4 text-center font-bold text-slate-300">
                       {item.credits}
                     </td>
                     <td className="py-3.5 px-4 text-center text-slate-400">
@@ -136,11 +136,7 @@ const GradesView: React.FC = () => {
                     <td className="py-3.5 px-6 text-center">
                       {item.grade ? (
                         <span
-                          className={`text-xs font-extrabold px-2.5 py-0.5 rounded border ${
-                            item.grade === 'F'
-                              ? 'bg-rose-500/10 text-rose-400 border-rose-500/20'
-                              : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                          }`}
+                          className="text-xs font-extrabold px-2.5 py-0.5 rounded border border-slate-700 bg-slate-900/10 text-slate-300"
                         >
                           {item.grade}
                         </span>

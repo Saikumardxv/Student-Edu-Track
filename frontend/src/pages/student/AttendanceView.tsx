@@ -39,7 +39,7 @@ const AttendanceView: React.FC = () => {
     return (
       <div className="flex h-[400px] items-center justify-center">
         <div className="flex flex-col items-center gap-2">
-          <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-slate-300" />
           <p className="text-xs text-slate-550">Compiling attendance records...</p>
         </div>
       </div>
@@ -58,7 +58,7 @@ const AttendanceView: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <CalendarCheck className="h-8 w-8 text-brand-500" />
+            <CalendarCheck className="h-8 w-8 text-slate-300" />
             Attendance Roster
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -67,17 +67,13 @@ const AttendanceView: React.FC = () => {
         </div>
 
         {/* Big Overall highlight */}
-        <div className={`flex items-center gap-3 bg-slate-900 border px-5 py-3 rounded-2xl shrink-0 ${
-          isBelow75 ? 'border-rose-500/20' : 'border-slate-800'
-        }`}>
-          <div className={`h-10 w-10 rounded-xl flex items-center justify-center ${
-            isBelow75 ? 'bg-rose-500/10' : 'bg-emerald-500/10'
-          }`}>
-            <CalendarCheck className={`h-5 w-5 ${isBelow75 ? 'text-rose-400' : 'text-emerald-400'}`} />
+        <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 px-5 py-3 rounded-2xl shrink-0">
+          <div className="h-10 w-10 rounded-xl flex items-center justify-center bg-slate-800">
+            <CalendarCheck className="h-5 w-5 text-slate-300" />
           </div>
           <div>
             <span className="text-[10px] font-bold uppercase text-slate-500 tracking-wider">Overall Average</span>
-            <p className={`text-xl font-bold ${isBelow75 ? 'text-rose-400' : 'text-slate-100'}`}>
+            <p className="text-xl font-bold text-slate-100">
               {overallPercentage}%
             </p>
           </div>
@@ -90,14 +86,12 @@ const AttendanceView: React.FC = () => {
           {reportList.map((item) => (
             <div 
               key={item.subjectId} 
-              className={`glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-1 ${
-                item.warning ? 'border-l-4 border-l-rose-500 shadow-rose-950/5' : 'border-l-4 border-l-brand-500'
-              }`}
+              className="glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-slate-700"
             >
               <div>
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <span className="text-[10px] font-bold tracking-wide uppercase bg-slate-900 border border-slate-850 px-2 py-0.5 rounded text-brand-450">
+                    <span className="text-[10px] font-bold tracking-wide uppercase bg-slate-900 border border-slate-850 px-2 py-0.5 rounded text-slate-300">
                       {item.subjectCode}
                     </span>
                     <h3 className="text-base font-bold text-slate-200 mt-2 leading-relaxed">
@@ -105,32 +99,22 @@ const AttendanceView: React.FC = () => {
                     </h3>
                   </div>
 
-                  {item.warning ? (
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-rose-400 bg-rose-500/10 border border-rose-500/25 px-2.5 py-1 rounded-full flex items-center gap-1">
-                      <AlertTriangle className="h-3 w-3" />
-                      &lt; 75% Alert
-                    </span>
-                  ) : (
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full flex items-center gap-1">
-                      <Sparkles className="h-3 w-3" />
-                      Clear Roster
-                    </span>
-                  )}
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300 bg-slate-900/10 border border-slate-800 px-2.5 py-1 rounded-full flex items-center gap-1">
+                    {item.warning ? <><AlertTriangle className="h-3 w-3" /> &lt; 75% Alert</> : <><Sparkles className="h-3 w-3" /> Clear Roster</>}
+                  </span>
                 </div>
 
                 {/* Progress bar */}
                 <div className="space-y-2 mt-4">
                   <div className="flex justify-between text-xs font-semibold text-slate-400">
                     <span>Attendance Rate</span>
-                    <span className={item.warning ? 'text-rose-450' : 'text-brand-400'}>
+                    <span className="text-slate-300">
                       {item.attendancePercentage}%
                     </span>
                   </div>
                   <div className="w-full bg-slate-950 rounded-full h-2 overflow-hidden border border-slate-900">
                     <div 
-                      className={`h-full rounded-full transition-all duration-500 ${
-                        item.warning ? 'bg-rose-500' : 'bg-gradient-to-r from-brand-600 to-violet-500'
-                      }`}
+                      className="h-full rounded-full transition-all duration-500 bg-slate-300"
                       style={{ width: `${Math.min(item.attendancePercentage, 100)}%` }}
                     />
                   </div>
@@ -145,15 +129,15 @@ const AttendanceView: React.FC = () => {
                 </div>
                 <div className="space-y-0.5">
                   <p className="text-slate-500 text-[10px]">Present</p>
-                  <p className="text-sm font-bold text-emerald-400">{item.present}</p>
+                  <p className="text-sm font-bold text-slate-300">{item.present}</p>
                 </div>
                 <div className="space-y-0.5">
                   <p className="text-slate-500 text-[10px]">Late</p>
-                  <p className="text-sm font-bold text-amber-400">{item.late}</p>
+                  <p className="text-sm font-bold text-slate-300">{item.late}</p>
                 </div>
                 <div className="space-y-0.5">
                   <p className="text-slate-500 text-[10px]">Absent</p>
-                  <p className="text-sm font-bold text-rose-400">{item.absent}</p>
+                  <p className="text-sm font-bold text-slate-300">{item.absent}</p>
                 </div>
               </div>
             </div>

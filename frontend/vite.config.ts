@@ -4,8 +4,8 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
 
-  // Required for GitHub Pages
-  base: "/Student-Edutrack/",
+  // Use root path in development and GitHub Pages base path in production
+  base: process.env.NODE_ENV === 'production' ? '/Student-Edutrack/' : '/',
 
   server: {
     port: 5173,

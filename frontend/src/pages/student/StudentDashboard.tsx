@@ -84,8 +84,8 @@ const StudentDashboard: React.FC = () => {
 
       {/* Warning Banner */}
       {isBelow75 && (
-        <div className="rounded-2xl bg-rose-500/10 border border-rose-500/25 p-4 flex items-start gap-3 text-sm text-rose-400 animate-pulse">
-          <AlertTriangle className="h-5 w-5 text-rose-500 shrink-0 mt-0.5" />
+        <div className="rounded-2xl bg-slate-900/20 border border-slate-800 p-4 flex items-start gap-3 text-sm text-slate-300 animate-pulse">
+          <AlertTriangle className="h-5 w-5 text-slate-300 shrink-0 mt-0.5" />
           <div>
             <h4 className="font-bold">Attendance Warning Notice</h4>
             <p className="text-xs leading-relaxed mt-0.5">
@@ -102,14 +102,14 @@ const StudentDashboard: React.FC = () => {
         {/* GPA KPI */}
         <div 
           onClick={() => navigate('/student/grades')}
-          className="glass-panel p-6 rounded-2xl flex items-center justify-between cursor-pointer hover:-translate-y-1 transition-all duration-300 shadow-xl border-l-4 border-l-brand-500"
+          className="glass-panel p-6 rounded-2xl flex items-center justify-between cursor-pointer hover:-translate-y-1 transition-all duration-300 shadow-xl border-l-4 border-l-slate-700"
         >
           <div className="space-y-1">
             <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Cumulative GPA</span>
             <p className="text-3xl font-bold text-slate-100">{data?.stats.gpa !== 0 ? data?.stats.gpa : 'N/A'}</p>
             <p className="text-[10px] text-slate-500">Based on published final grades</p>
           </div>
-          <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-gradient-to-tr from-brand-650 to-violet-500 shadow-lg">
+          <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-slate-800 shadow-lg">
             <Award className="h-6 w-6 text-white" />
           </div>
         </div>
@@ -117,20 +117,16 @@ const StudentDashboard: React.FC = () => {
         {/* Attendance KPI */}
         <div 
           onClick={() => navigate('/student/attendance')}
-          className={`glass-panel p-6 rounded-2xl flex items-center justify-between cursor-pointer hover:-translate-y-1 transition-all duration-300 shadow-xl border-l-4 ${
-            isBelow75 ? 'border-l-rose-500 shadow-rose-950/10' : 'border-l-emerald-500 shadow-emerald-950/10'
-          }`}
+          className="glass-panel p-6 rounded-2xl flex items-center justify-between cursor-pointer hover:-translate-y-1 transition-all duration-300 shadow-xl border-l-4 border-l-slate-700"
         >
           <div className="space-y-1">
             <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Overall Attendance</span>
             <p className="text-3xl font-bold text-slate-100">{attendance}%</p>
-            <p className={`text-[10px] font-semibold uppercase tracking-wider ${isBelow75 ? 'text-rose-400' : 'text-emerald-400'}`}>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-300">
               {isBelow75 ? 'Warning: Under 75%' : 'Good Standing'}
             </p>
           </div>
-          <div className={`h-12 w-12 rounded-xl flex items-center justify-center shadow-lg ${
-            isBelow75 ? 'bg-gradient-to-tr from-rose-650 to-orange-500' : 'bg-gradient-to-tr from-emerald-650 to-teal-550'
-          }`}>
+          <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-slate-800 shadow-lg">
             <CalendarCheck className="h-6 w-6 text-white" />
           </div>
         </div>
@@ -142,16 +138,15 @@ const StudentDashboard: React.FC = () => {
         
         {/* Classes Today */}
         <div className="lg:col-span-2 glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col min-h-[350px]">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
-          
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/20 to-transparent" />
           <div className="flex justify-between items-center pb-4 mb-4 border-b border-slate-800/80">
             <h3 className="text-base font-bold text-slate-200 flex items-center gap-2">
-              <Clock className="h-5 w-5 text-brand-400" />
+              <Clock className="h-5 w-5 text-slate-300" />
               Today's Schedule ({data?.todayClasses.length || 0} Lectures)
             </h3>
             <button 
               onClick={() => navigate('/student/timetable')}
-              className="text-xs text-brand-400 hover:text-brand-300 font-semibold flex items-center gap-1"
+              className="text-xs text-slate-300 hover:text-slate-100 font-semibold flex items-center gap-1"
             >
               Weekly Grid <ArrowRight className="h-3 w-3" />
             </button>
@@ -166,7 +161,7 @@ const StudentDashboard: React.FC = () => {
                 >
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-bold tracking-wide uppercase bg-slate-900 text-brand-400 border border-slate-850 px-2 py-0.5 rounded">
+                      <span className="text-[9px] font-bold tracking-wide uppercase bg-slate-900 text-slate-200 border border-slate-850 px-2 py-0.5 rounded">
                         {cls.subjectCode}
                       </span>
                       <span className="font-semibold text-slate-200 text-sm">{cls.subjectName}</span>
@@ -200,16 +195,16 @@ const StudentDashboard: React.FC = () => {
 
         {/* Notices Board */}
         <div className="glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-violet-500/25 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/25 to-transparent" />
           
           <div className="flex justify-between items-center pb-4 mb-4 border-b border-slate-800/80">
             <h3 className="text-base font-bold text-slate-200 flex items-center gap-2">
-              <BellRing className="h-5 w-5 text-violet-400" />
+              <BellRing className="h-5 w-5 text-slate-300" />
               Notices Board
             </h3>
             <button 
               onClick={() => navigate('/student/notices')}
-              className="text-xs text-brand-400 hover:text-brand-300 font-semibold"
+              className="text-xs text-slate-300 hover:text-slate-100 font-semibold"
             >
               All Notices
             </button>

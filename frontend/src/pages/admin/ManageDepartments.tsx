@@ -75,7 +75,7 @@ const ManageDepartments: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <Building2 className="h-8 w-8 text-brand-500" />
+            <Building2 className="h-8 w-8 text-slate-500" />
             Departments & Semesters
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -84,7 +84,7 @@ const ManageDepartments: React.FC = () => {
         </div>
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="flex items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/10 active:scale-95 transition-all"
+          className="flex items-center gap-2 rounded-lg bg-slate-600 hover:bg-slate-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 active:scale-95 transition-all"
         >
           <Plus className="h-4 w-4" />
           Create Department
@@ -103,14 +103,14 @@ const ManageDepartments: React.FC = () => {
           {departments.map((dept) => (
             <div key={dept.id} className="glass-panel p-6 rounded-2xl relative overflow-hidden group shadow-xl">
               {/* Decorative side accent */}
-              <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-brand-500" />
+              <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-slate-500" />
               
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <span className="text-[10px] font-bold tracking-wider uppercase bg-brand-500/10 text-brand-400 border border-brand-500/25 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-bold tracking-wider uppercase bg-slate-800500/10 text-slate-400 border border-slate-700500/25 px-2 py-0.5 rounded">
                     {dept.code}
                   </span>
-                  <h3 className="text-lg font-bold text-slate-200 mt-2 group-hover:text-brand-400 transition-colors">
+                  <h3 className="text-lg font-bold text-slate-200 mt-2 group-hover:text-slate-400 transition-colors">
                     {dept.name}
                   </h3>
                 </div>
@@ -155,10 +155,10 @@ const ManageDepartments: React.FC = () => {
 
       {/* Semesters Info Panel */}
       <div className="glass-panel rounded-2xl p-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/20 to-transparent" />
         
         <h3 className="text-lg font-bold text-slate-200 flex items-center gap-2 mb-4">
-          <Calendar className="h-5 w-5 text-brand-400" />
+          <Calendar className="h-5 w-5 text-slate-400" />
           Curriculum Semesters
         </h3>
         
@@ -168,7 +168,7 @@ const ManageDepartments: React.FC = () => {
               <h4 className="font-bold text-slate-200">Semester 1</h4>
               <p className="text-xs text-slate-500 mt-0.5">Academic Year: 2026</p>
             </div>
-            <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full">
+            <span className="text-xs font-semibold text-slate-400 bg-slate-900/10 border border-slate-800500/20 px-2.5 py-1 rounded-full">
               Active Session
             </span>
           </div>
@@ -178,7 +178,7 @@ const ManageDepartments: React.FC = () => {
               <h4 className="font-bold text-slate-200">Semester 2</h4>
               <p className="text-xs text-slate-500 mt-0.5">Academic Year: 2026</p>
             </div>
-            <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full">
+            <span className="text-xs font-semibold text-slate-400 bg-slate-900/10 border border-slate-800500/20 px-2.5 py-1 rounded-full">
               Active Session
             </span>
           </div>
@@ -189,7 +189,7 @@ const ManageDepartments: React.FC = () => {
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 animate-fade-in">
           <div className="glass-panel w-full max-w-md rounded-2xl overflow-hidden shadow-2xl relative">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/50 to-transparent" />
             
             <div className="flex justify-between items-center p-6 border-b border-slate-800/80 bg-slate-900/20">
               <h3 className="text-lg font-bold text-slate-200">Create Department</h3>
@@ -235,7 +235,7 @@ const ManageDepartments: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-500/10"
+                  className="flex items-center gap-1.5 rounded-lg bg-slate-600 hover:bg-slate-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-900/10"
                   disabled={submitting}
                 >
                   {submitting && <Loader2 className="h-4 w-4 animate-spin" />}

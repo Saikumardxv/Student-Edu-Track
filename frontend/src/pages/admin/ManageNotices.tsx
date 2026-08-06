@@ -100,7 +100,7 @@ const ManageNotices: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <Megaphone className="h-8 w-8 text-brand-500" />
+            <Megaphone className="h-8 w-8 text-slate-500" />
             Announcement Manager
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -109,7 +109,7 @@ const ManageNotices: React.FC = () => {
         </div>
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="flex items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/10 active:scale-95 transition-all"
+          className="flex items-center gap-2 rounded-lg bg-slate-600 hover:bg-slate-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 active:scale-95 transition-all"
         >
           <Plus className="h-4 w-4" />
           Post Announcement
@@ -118,17 +118,17 @@ const ManageNotices: React.FC = () => {
 
       {/* Notices Feed / History List */}
       <div className="glass-panel rounded-2xl p-6 relative overflow-hidden flex flex-col shadow-xl">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/20 to-transparent" />
         
         <h3 className="text-lg font-bold text-slate-200 flex items-center gap-2 mb-6 border-b border-slate-800/85 pb-4">
-          <BellRing className="h-5 w-5 text-brand-400" />
+          <BellRing className="h-5 w-5 text-slate-400" />
           Broadcast History
         </h3>
 
         <div className="space-y-4 flex-1">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20">
-              <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-slate-500" />
               <p className="text-xs text-slate-500 mt-2">Loading notice board history...</p>
             </div>
           ) : notices.length > 0 ? (
@@ -148,8 +148,8 @@ const ManageNotices: React.FC = () => {
                         {notice.targetRole || 'ALL ROLES'}
                       </span>
                       {deptCode && (
-                        <span className="text-[10px] font-semibold bg-slate-900 text-brand-400 border border-slate-800 px-2 py-0.5 rounded flex items-center gap-1">
-                          <Building2 className="h-3 w-3 text-brand-500/80" />
+                        <span className="text-[10px] font-semibold bg-slate-900 text-slate-400 border border-slate-800 px-2 py-0.5 rounded flex items-center gap-1">
+                          <Building2 className="h-3 w-3 text-slate-100500/80" />
                           {deptCode}
                         </span>
                       )}
@@ -178,7 +178,7 @@ const ManageNotices: React.FC = () => {
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 animate-fade-in">
           <div className="glass-panel w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl relative">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/50 to-transparent" />
             
             <div className="flex justify-between items-center p-6 border-b border-slate-800/80 bg-slate-900/20">
               <h3 className="text-lg font-bold text-slate-200">Compose Notice</h3>
@@ -257,7 +257,7 @@ const ManageNotices: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-500/10"
+                  className="flex items-center gap-1.5 rounded-lg bg-slate-600 hover:bg-slate-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-900/10"
                   disabled={submitting}
                 >
                   {submitting && <Loader2 className="h-4 w-4 animate-spin" />}

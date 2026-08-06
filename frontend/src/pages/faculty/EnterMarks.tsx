@@ -168,7 +168,7 @@ const EnterMarks: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <FileSpreadsheet className="h-8 w-8 text-brand-500" />
+            <FileSpreadsheet className="h-8 w-8 text-slate-500" />
             Enter Academic Marks
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -179,7 +179,7 @@ const EnterMarks: React.FC = () => {
 
       {/* Selector Panel */}
       <div className="glass-panel p-6 rounded-2xl relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/20 to-transparent" />
         
         <div className="space-y-2">
           <label className="text-xs font-semibold uppercase text-slate-400">Select Subject</label>
@@ -206,7 +206,7 @@ const EnterMarks: React.FC = () => {
 
       {selectedSubjectId ? (
         <div className="glass-panel p-6 rounded-2xl flex flex-col relative overflow-hidden shadow-xl">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/30 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/30 to-transparent" />
 
           {/* Roster Title */}
           <div className="pb-4 mb-4 border-b border-slate-800/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
@@ -220,7 +220,7 @@ const EnterMarks: React.FC = () => {
             </div>
             
             <div className="flex items-center gap-1.5 bg-slate-900 border border-slate-850 px-3 py-1.5 rounded-lg text-xs text-slate-400">
-              <Info className="h-4 w-4 text-brand-400 shrink-0" />
+              <Info className="h-4 w-4 text-slate-400 shrink-0" />
               <span>Click "Save" row button to upload student scores.</span>
             </div>
           </div>
@@ -228,7 +228,7 @@ const EnterMarks: React.FC = () => {
           {/* Table Spreadsheet */}
           {loadingSheet ? (
             <div className="flex flex-col items-center justify-center py-20">
-              <Loader2 className="h-8 w-8 animate-spin text-brand-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-slate-500" />
               <p className="text-xs text-slate-500 mt-2">Loading gradesheet...</p>
             </div>
           ) : studentsList.length > 0 ? (
@@ -292,7 +292,7 @@ const EnterMarks: React.FC = () => {
                           placeholder="-"
                         />
                       </td>
-                      <td className="py-2.5 px-2 text-center font-bold text-brand-400">
+                      <td className="py-2.5 px-2 text-center font-bold text-slate-400">
                         {row.total !== null ? row.total : '-'}
                       </td>
                       <td className="py-2.5 px-2 text-center">
@@ -300,8 +300,8 @@ const EnterMarks: React.FC = () => {
                           <span
                             className={`text-[10px] font-extrabold px-2 py-0.5 rounded border ${
                               row.grade === 'F'
-                                ? 'bg-rose-500/10 text-rose-400 border-rose-500/20'
-                                : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                                ? 'bg-slate-900/10 text-slate-400 border-slate-800500/20'
+                                : 'bg-slate-900/10 text-slate-400 border-slate-800500/20'
                             }`}
                           >
                             {row.grade}
@@ -315,7 +315,7 @@ const EnterMarks: React.FC = () => {
                           type="button"
                           onClick={() => handleSaveRow(row.studentId)}
                           disabled={row.saving}
-                          className="p-2 rounded-lg bg-slate-900 border border-slate-850 hover:bg-slate-800 text-brand-400 disabled:opacity-50 transition-colors"
+                          className="p-2 rounded-lg bg-slate-900 border border-slate-850 hover:bg-slate-800 text-slate-400 disabled:opacity-50 transition-colors"
                           title="Save Marks"
                         >
                           {row.saving ? (

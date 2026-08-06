@@ -64,32 +64,32 @@ const AdminDashboard: React.FC = () => {
       label: 'Total Students',
       value: data?.stats.totalStudents || 0,
       icon: Users,
-      color: 'from-blue-600 to-indigo-500',
-      shadow: 'shadow-blue-500/10',
+      color: 'from-slate-800 to-slate-700',
+      shadow: 'shadow-slate-950/20',
       path: '/admin/students',
     },
     {
       label: 'Total Faculty',
       value: data?.stats.totalFaculty || 0,
       icon: GraduationCap,
-      color: 'from-violet-600 to-fuchsia-500',
-      shadow: 'shadow-violet-500/10',
+      color: 'from-slate-800 to-slate-700',
+      shadow: 'shadow-slate-950/20',
       path: '/admin/faculty',
     },
     {
       label: 'Departments',
       value: data?.stats.totalDepartments || 0,
       icon: Building2,
-      color: 'from-emerald-600 to-teal-500',
-      shadow: 'shadow-emerald-500/10',
+      color: 'from-slate-800 to-slate-700',
+      shadow: 'shadow-slate-950/20',
       path: '/admin/departments',
     },
     {
       label: 'Total Subjects',
       value: data?.stats.totalSubjects || 0,
       icon: BookOpen,
-      color: 'from-amber-600 to-orange-500',
-      shadow: 'shadow-amber-500/10',
+      color: 'from-slate-800 to-slate-700',
+      shadow: 'shadow-slate-950/20',
       path: '/admin/subjects',
     },
   ];
@@ -108,7 +108,7 @@ const AdminDashboard: React.FC = () => {
         </div>
         <button
           onClick={() => navigate('/admin/reports')}
-          className="flex items-center gap-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 px-4 py-2 text-xs font-semibold text-brand-400 border border-slate-850/80 transition-all active:scale-95"
+          className="flex items-center gap-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 px-4 py-2 text-xs font-semibold text-slate-100 border border-slate-850/80 transition-all active:scale-95"
         >
           View Full Analytics
           <ArrowUpRight className="h-4 w-4" />
@@ -129,8 +129,8 @@ const AdminDashboard: React.FC = () => {
                 <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{card.label}</span>
                 <p className="text-3xl font-bold text-slate-100">{card.value}</p>
               </div>
-              <div className={`h-12 w-12 rounded-xl flex items-center justify-center bg-gradient-to-tr ${card.color} shadow-lg`}>
-                <Icon className="h-6 w-6 text-white" />
+              <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-slate-800/70 shadow-lg">
+                <Icon className="h-6 w-6 text-slate-100" />
               </div>
             </div>
           );
@@ -142,16 +142,16 @@ const AdminDashboard: React.FC = () => {
         
         {/* Recent Notices */}
         <div className="lg:col-span-2 glass-panel rounded-2xl p-6 relative overflow-hidden flex flex-col">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/25 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
           
           <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-800/80">
             <h3 className="text-lg font-bold text-slate-200 flex items-center gap-2">
-              <BellRing className="h-5 w-5 text-brand-400" />
+              <BellRing className="h-5 w-5 text-slate-100" />
               Recent Announcements
             </h3>
             <button
               onClick={() => navigate('/admin/notices')}
-              className="text-xs text-brand-400 hover:text-brand-300 font-semibold"
+              className="text-xs text-slate-200 hover:text-slate-100 font-semibold"
             >
               Manage Board
             </button>
@@ -183,7 +183,7 @@ const AdminDashboard: React.FC = () => {
 
         {/* Quick Operations Widget */}
         <div className="glass-panel rounded-2xl p-6 relative overflow-hidden flex flex-col">
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-violet-500/25 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700/50 to-transparent" />
           
           <div className="pb-4 mb-4 border-b border-slate-800/80">
             <h3 className="text-lg font-bold text-slate-200">
@@ -194,66 +194,66 @@ const AdminDashboard: React.FC = () => {
           <div className="grid grid-cols-1 gap-3 flex-1 justify-center">
             <button
               onClick={() => navigate('/admin/students', { state: { openAddModal: true } })}
-              className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/40 hover:bg-slate-900/85 border border-slate-850/80 hover:border-brand-500/30 text-left transition-all group"
+              className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/40 hover:bg-slate-900/85 border border-slate-850/80 hover:border-slate-700 text-left transition-all group"
             >
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
-                  <Plus className="h-5 w-5 text-blue-400" />
+                <div className="h-9 w-9 rounded-lg bg-slate-800/60 flex items-center justify-center border border-slate-700">
+                  <Plus className="h-5 w-5 text-slate-100" />
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold text-slate-200">Add Student</h4>
                   <p className="text-[10px] text-slate-500 mt-0.5">Enrolls into subjects</p>
                 </div>
               </div>
-              <ArrowUpRight className="h-4 w-4 text-slate-600 group-hover:text-brand-400 group-hover:translate-x-0.5 transition-all" />
+              <ArrowUpRight className="h-4 w-4 text-slate-600 group-hover:text-slate-200 group-hover:translate-x-0.5 transition-all" />
             </button>
 
             <button
               onClick={() => navigate('/admin/faculty')}
-              className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/40 hover:bg-slate-900/85 border border-slate-850/80 hover:border-brand-500/30 text-left transition-all group"
+              className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/40 hover:bg-slate-900/85 border border-slate-850/80 hover:border-slate-700 text-left transition-all group"
             >
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-lg bg-violet-500/10 flex items-center justify-center border border-violet-500/20">
-                  <Plus className="h-5 w-5 text-violet-400" />
+                <div className="h-9 w-9 rounded-lg bg-slate-800/60 flex items-center justify-center border border-slate-700">
+                  <Plus className="h-5 w-5 text-slate-100" />
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold text-slate-200">Add Faculty</h4>
                   <p className="text-[10px] text-slate-500 mt-0.5">Appoints staff members</p>
                 </div>
               </div>
-              <ArrowUpRight className="h-4 w-4 text-slate-600 group-hover:text-brand-400 group-hover:translate-x-0.5 transition-all" />
+              <ArrowUpRight className="h-4 w-4 text-slate-600 group-hover:text-slate-200 group-hover:translate-x-0.5 transition-all" />
             </button>
 
             <button
               onClick={() => navigate('/admin/timetable')}
-              className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/40 hover:bg-slate-900/85 border border-slate-850/80 hover:border-brand-500/30 text-left transition-all group"
+              className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/40 hover:bg-slate-900/85 border border-slate-850/80 hover:border-slate-700 text-left transition-all group"
             >
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                  <Calendar className="h-4 w-4 text-emerald-400" />
+                <div className="h-9 w-9 rounded-lg bg-slate-800/60 flex items-center justify-center border border-slate-700">
+                  <Calendar className="h-4 w-4 text-slate-100" />
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold text-slate-200">Create Timetable</h4>
                   <p className="text-[10px] text-slate-500 mt-0.5">Configures time slots</p>
                 </div>
               </div>
-              <ArrowUpRight className="h-4 w-4 text-slate-600 group-hover:text-brand-400 group-hover:translate-x-0.5 transition-all" />
+              <ArrowUpRight className="h-4 w-4 text-slate-600 group-hover:text-slate-200 group-hover:translate-x-0.5 transition-all" />
             </button>
 
             <button
               onClick={() => navigate('/admin/notices')}
-              className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/40 hover:bg-slate-900/85 border border-slate-850/80 hover:border-brand-500/30 text-left transition-all group"
+              className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/40 hover:bg-slate-900/85 border border-slate-850/80 hover:border-slate-700 text-left transition-all group"
             >
               <div className="flex items-center gap-3">
-                <div className="h-9 w-9 rounded-lg bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
-                  <Megaphone className="h-4 w-4 text-amber-400" />
+                <div className="h-9 w-9 rounded-lg bg-slate-800/60 flex items-center justify-center border border-slate-700">
+                  <Megaphone className="h-4 w-4 text-slate-100" />
                 </div>
                 <div>
                   <h4 className="text-xs font-semibold text-slate-200">Post Announcement</h4>
                   <p className="text-[10px] text-slate-500 mt-0.5">Broadcasts bulletins</p>
                 </div>
               </div>
-              <ArrowUpRight className="h-4 w-4 text-slate-600 group-hover:text-brand-400 group-hover:translate-x-0.5 transition-all" />
+              <ArrowUpRight className="h-4 w-4 text-slate-600 group-hover:text-slate-200 group-hover:translate-x-0.5 transition-all" />
             </button>
           </div>
         </div>
