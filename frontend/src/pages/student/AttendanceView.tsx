@@ -50,7 +50,7 @@ const AttendanceView: React.FC = () => {
   const totalClasses = reportList.reduce((acc, curr) => acc + curr.totalClasses, 0);
   const totalPresent = reportList.reduce((acc, curr) => acc + curr.present, 0);
   const overallPercentage = totalClasses > 0 ? parseFloat(((totalPresent / totalClasses) * 100).toFixed(2)) : 100.0;
-  const isBelow75 = overallPercentage < 75.0;
+
 
   return (
     <div className="space-y-6 font-sans animate-fade-in">

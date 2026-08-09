@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { School, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { School, Eye, EyeOff, Loader2, Palette } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
+import { ThemeContext, Theme } from '../context/ThemeContext';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,11 @@ const Login: React.FC = () => {
   const [error, setError] = useState('');
 
   const auth = useContext(AuthContext);
+  const themeCtx = useContext(ThemeContext);
   const navigate = useNavigate();
+
+  const currentTheme = themeCtx?.theme || 'slate';
+  const setTheme = themeCtx?.setTheme;
 
   // If user is already logged in, redirect them
   useEffect(() => {
@@ -35,7 +40,6 @@ const Login: React.FC = () => {
     try {
       if (auth) {
         await auth.login(email, password);
-        // Redirect handled by useEffect
       }
     } catch (err: any) {
       console.error(err);
@@ -45,41 +49,50 @@ const Login: React.FC = () => {
     }
   };
 
+  const themesList: Array<{ id: Theme; name: string; color: string }> = [
+    { id: 'slate', name: 'Slate Dark', color: 'bg-slate-700' },
+    { id: 'indigo', name: 'Indigo Glow', color: 'bg-indigo-500' },
+    { id: 'emerald', name: 'Emerald Forest', color: 'bg-emerald-500' },
+    { id: 'sunset', name: 'Sunset Amber', color: 'bg-orange-500' },
+    { id: 'crimson', name: 'Crimson Vampire', color: 'bg-red-500' },
+    { id: 'light', name: 'Luxury Light', color: 'bg-slate-300' },
+  ];
+
   return (
-    <div className="relative flex min-h-screen items-center justify-center px-4 overflow-hidden font-sans bg-slate-950">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.06),_transparent_18%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.05),_transparent_20%)] pointer-events-none" />
+    <div className="relative flex min-h-screen items-center justify-center px-4 overflow-hidden font-sans theme-bg text-[var(--text-primary)] transition-colors duration-300">
+      {/* Dynamic Glowing Mesh Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--glow-color),_transparent_35%),radial-gradient(circle_at_bottom_right,_var(--glow-color),_transparent_35%)] pointer-events-none" />
 
       <div className="w-full max-w-md z-10 animate-slide-up">
         {/* Logo and Headings */}
         <div className="flex flex-col items-center mb-8">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800 shadow-xl shadow-slate-900/40 mb-4">
-            <School className="h-6 w-6 text-slate-100" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-[var(--accent)] to-[var(--accent-hover)] shadow-xl shadow-black/30 mb-4 transition-all">
+            <School className="h-6 w-6 text-[var(--accent-foreground)]" />
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-100">
+          <h1 className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)]">
             Welcome to EduTrack
           </h1>
-          <p className="text-sm text-slate-400 mt-2">
+          <p className="text-sm text-[var(--text-muted)] mt-2">
             Sign in to access your dashboard
           </p>
         </div>
 
         {/* Glassmorphic Form Card */}
-        <div className="glass-panel rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+        <div className="glass-panel rounded-3xl p-8 shadow-2xl relative overflow-hidden transition-all">
           {/* Top border glow */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-slate-700/60" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-80" />
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
-              <div className="rounded-lg bg-slate-800/70 border border-slate-700/80 px-4 py-3 text-sm text-slate-200">
+              <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-400">
                 {error}
               </div>
             )}
 
             {/* Email Field */}
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <label className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
                 Email Address
-
               </label>
               <input
                 type="email"
@@ -94,7 +107,7 @@ const Login: React.FC = () => {
             {/* Password Field */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <label className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
                   Password
                 </label>
               </div>
@@ -110,7 +123,7 @@ const Login: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3 text-slate-500 hover:text-slate-350"
+                  className="absolute right-3 top-3 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
                   disabled={loading}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -122,7 +135,7 @@ const Login: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full items-center justify-center gap-2 rounded-lg btn-accent text-sm font-semibold py-3 shadow-lg shadow-slate-900/40 active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none"
+              className="flex w-full items-center justify-center gap-2 rounded-lg btn-accent text-sm font-semibold py-3 shadow-lg active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none"
             >
               {loading ? (
                 <>
@@ -133,20 +146,39 @@ const Login: React.FC = () => {
                 'Sign In'
               )}
             </button>
+            
             <div className="mt-4 text-center">
-                 <span className="text-gray-400">
-                   New User?{" "}
-                 </span>
- 
-                 <Link
-                    to="/register"
-                    className="text-slate-300 hover:text-slate-100 font-semibold"
-                  >
-                    Register Here
-                  </Link>
-                </div>
+              <span className="text-[var(--text-muted)] text-sm">
+                New User?{' '}
+              </span>
+              <Link
+                to="/register"
+                className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-semibold transition-colors text-sm"
+              >
+                Register Here
+              </Link>
+            </div>
           </form>
 
+          {/* Theme Selector Widget */}
+          <div className="mt-8 pt-6 border-t theme-border flex flex-col items-center gap-3">
+            <span className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider flex items-center gap-1.5">
+              <Palette className="h-3.5 w-3.5 text-[var(--accent)]" /> Customize Page Theme
+            </span>
+            <div className="flex gap-2">
+              {themesList.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setTheme?.(t.id)}
+                  className={`h-5 w-5 rounded-full ${t.color} border border-white/20 transition-transform hover:scale-125 ${
+                    currentTheme === t.id ? 'ring-2 ring-[var(--accent)] ring-offset-2 ring-offset-[var(--surface)] scale-110' : ''
+                  }`}
+                  title={t.name}
+                />
+              ))}
+            </div>
+          </div>
 
         </div>
       </div>

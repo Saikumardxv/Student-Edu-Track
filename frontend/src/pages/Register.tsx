@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { User, Mail, Lock, Eye, EyeOff, GraduationCap } from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff, GraduationCap, Palette } from "lucide-react";
 import api from "../utils/api";
+import { ThemeContext, Theme } from "../context/ThemeContext";
 
 interface Department {
   id: number;
@@ -17,11 +18,15 @@ interface Semester {
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
+  const themeCtx = useContext(ThemeContext);
 
   const [showPassword, setShowPassword] = useState(false);
   const [departments, setDepartments] = useState<Department[]>([]);
   const [semesters, setSemesters] = useState<Semester[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const currentTheme = themeCtx?.theme || 'slate';
+  const setTheme = themeCtx?.setTheme;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -93,201 +98,232 @@ const Register: React.FC = () => {
     }
   };
 
-  return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-slate-950">
-      <div className="w-full max-w-md bg-slate-900/95 rounded-[2rem] shadow-[0_24px_120px_-40px_rgba(15,23,42,0.8)] border border-slate-800/40 p-8 backdrop-blur-xl">
+  const themesList: Array<{ id: Theme; name: string; color: string }> = [
+    { id: 'slate', name: 'Slate Dark', color: 'bg-slate-700' },
+    { id: 'indigo', name: 'Indigo Glow', color: 'bg-indigo-500' },
+    { id: 'emerald', name: 'Emerald Forest', color: 'bg-emerald-500' },
+    { id: 'sunset', name: 'Sunset Amber', color: 'bg-orange-500' },
+    { id: 'crimson', name: 'Crimson Vampire', color: 'bg-red-500' },
+    { id: 'light', name: 'Luxury Light', color: 'bg-slate-300' },
+  ];
 
+  return (
+    <div className="relative min-h-screen flex items-center justify-center px-4 py-12 overflow-hidden font-sans theme-bg text-[var(--text-primary)] transition-colors duration-300">
+      {/* Dynamic Glowing Mesh Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--glow-color),_transparent_35%),radial-gradient(circle_at_bottom_right,_var(--glow-color),_transparent_35%)] pointer-events-none" />
+
+      <div className="w-full max-w-md z-10 animate-slide-up">
+        {/* Card Header & graduation cap */}
         <div className="flex justify-center mb-6">
-          <div className="bg-slate-800 p-4 rounded-3xl shadow-lg shadow-slate-900/20">
-            <GraduationCap className="text-slate-100 w-8 h-8" />
+          <div className="bg-gradient-to-tr from-[var(--accent)] to-[var(--accent-hover)] p-4 rounded-3xl shadow-lg shadow-black/30 transition-all">
+            <GraduationCap className="text-[var(--accent-foreground)] w-8 h-8" />
           </div>
         </div>
 
-        <h1 className="text-4xl font-bold text-center text-white">
+        <h1 className="text-4xl font-bold text-center text-[var(--text-primary)]">
           Create Account
         </h1>
 
-        <p className="text-center text-gray-400 mt-2 mb-8">
+        <p className="text-center text-[var(--text-muted)] mt-2 mb-8">
           Register to access EduTrack
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Glassmorphic Card Container */}
+        <div className="glass-panel rounded-[2rem] p-8 shadow-2xl relative overflow-hidden transition-all">
+          {/* Top border glow */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-80" />
 
-          {/* Name */}
-          <div>
-            <label className="text-gray-300 text-sm">
-              FULL NAME
-            </label>
+          <form onSubmit={handleSubmit} className="space-y-5">
 
-            <div className="relative mt-2">
-              <User className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
+            {/* Name */}
+            <div className="space-y-1">
+              <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
+                Full Name
+              </label>
+              <div className="relative mt-1">
+                <User className="absolute left-3 top-3 text-[var(--text-muted)] w-5 h-5" />
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full glass-input pl-11"
+                />
+              </div>
+            </div>
 
+            {/* Email */}
+            <div className="space-y-1">
+              <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
+                Email Address
+              </label>
+              <div className="relative mt-1">
+                <Mail className="absolute left-3 top-3 text-[var(--text-muted)] w-5 h-5" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Enter email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full glass-input pl-11"
+                />
+              </div>
+            </div>
+
+            {/* Roll Number */}
+            <div className="space-y-1">
+              <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
+                Roll Number
+              </label>
               <input
                 type="text"
-                name="name"
+                name="rollNumber"
                 required
-                placeholder="Enter your name"
-                value={formData.name}
+                placeholder="Enter roll number"
+                value={formData.rollNumber}
                 onChange={handleChange}
-                className="w-full pl-11 pr-4 py-3 rounded-lg bg-slate-900 text-slate-100 outline-none"
+                className="w-full glass-input"
               />
             </div>
-          </div>
 
-          {/* Email */}
-          <div>
-            <label className="text-gray-300 text-sm">
-              EMAIL ADDRESS
-            </label>
-
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="Enter email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 text-slate-100 outline-none"
-            />
-          </div>
-
-          {/* Roll Number */}
-          <div>
-            <label className="text-gray-300 text-sm">
-              ROLL NUMBER
-            </label>
-
-            <input
-              type="text"
-              name="rollNumber"
-              required
-              placeholder="Enter roll number"
-              value={formData.rollNumber}
-              onChange={handleChange}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 text-slate-100 outline-none"
-            />
-          </div>
-
-          {/* Department */}
-          <div>
-            <label className="text-gray-300 text-sm">
-              DEPARTMENT
-            </label>
-
-            <select
-              name="departmentId"
-              value={formData.departmentId}
-              onChange={handleChange}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 text-slate-100 outline-none"
-              required
-            >
-              <option value="">Select department</option>
-              {departments.map((dept) => (
-                <option key={dept.id} value={dept.id}>
-                  {dept.name} ({dept.code})
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Semester */}
-          <div>
-            <label className="text-gray-300 text-sm">
-              SEMESTER
-            </label>
-
-            <select
-              name="currentSemester"
-              value={formData.currentSemester}
-              onChange={handleChange}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 text-slate-100 outline-none"
-              required
-            >
-              <option value="">Select semester</option>
-              {semesters.map((semester) => (
-                <option key={semester.id} value={semester.id}>
-                  Semester {semester.number} - {semester.year}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="text-gray-300 text-sm">
-              PASSWORD
-            </label>
-
-            <div className="relative mt-2">
-              <Lock className="absolute left-3 top-3 text-slate-400 w-5 h-5" />
-
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                required
-                placeholder="Enter password"
-                value={formData.password}
+            {/* Department */}
+            <div className="space-y-1">
+              <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
+                Department
+              </label>
+              <select
+                name="departmentId"
+                value={formData.departmentId}
                 onChange={handleChange}
-                className="w-full pl-11 pr-12 py-3 rounded-2xl bg-slate-900/90 text-slate-100 outline-none border border-slate-700 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/30"
-              />
-
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-3"
+                className="w-full glass-input block bg-[var(--input-bg)]"
+                required
               >
-                {showPassword ? (
-                  <EyeOff className="text-gray-500 w-5 h-5" />
-                ) : (
-                  <Eye className="text-gray-500 w-5 h-5" />
-                )}
-              </button>
+                <option value="" className="theme-surface">Select department</option>
+                {departments.map((dept) => (
+                  <option key={dept.id} value={dept.id} className="theme-surface">
+                    {dept.name} ({dept.code})
+                  </option>
+                ))}
+              </select>
             </div>
-          </div>
 
-          {/* Confirm Password */}
-          <div>
-            <label className="text-gray-300 text-sm">
-              CONFIRM PASSWORD
-            </label>
-
-            <div className="relative mt-2">
-              <Lock className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
-
-              <input
-                type="password"
-                name="confirmPassword"
-                required
-                placeholder="Confirm password"
-                value={formData.confirmPassword}
+            {/* Semester */}
+            <div className="space-y-1">
+              <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
+                Semester
+              </label>
+              <select
+                name="currentSemester"
+                value={formData.currentSemester}
                 onChange={handleChange}
-                className="w-full pl-11 pr-4 py-3 rounded-lg bg-slate-900 text-slate-100 outline-none"
-              />
+                className="w-full glass-input block bg-[var(--input-bg)]"
+                required
+              >
+                <option value="" className="theme-surface">Select semester</option>
+                {semesters.map((semester) => (
+                  <option key={semester.id} value={semester.id} className="theme-surface">
+                    Semester {semester.number} - {semester.year}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Password */}
+            <div className="space-y-1">
+              <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
+                Password
+              </label>
+              <div className="relative mt-1">
+                <Lock className="absolute left-3 top-3 text-[var(--text-muted)] w-5 h-5" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  placeholder="Enter password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="w-full glass-input pl-11 pr-12"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Confirm Password */}
+            <div className="space-y-1">
+              <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
+                Confirm Password
+              </label>
+              <div className="relative mt-1">
+                <Lock className="absolute left-3 top-3 text-[var(--text-muted)] w-5 h-5" />
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  required
+                  placeholder="Confirm password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="w-full glass-input pl-11"
+                />
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full btn-accent py-3 rounded-lg font-semibold shadow-xl active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none mt-2"
+            >
+              {loading ? 'Registering...' : 'Register'}
+            </button>
+
+            <div className="text-center mt-4">
+              <span className="text-[var(--text-muted)] text-sm">
+                Already have an account?{" "}
+              </span>
+              <Link
+                to="/login"
+                className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-semibold transition-colors text-sm"
+              >
+                Sign In
+              </Link>
+            </div>
+
+          </form>
+
+          {/* Theme Selector Widget */}
+          <div className="mt-8 pt-6 border-t theme-border flex flex-col items-center gap-3">
+            <span className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider flex items-center gap-1.5">
+              <Palette className="h-3.5 w-3.5 text-[var(--accent)]" /> Customize Page Theme
+            </span>
+            <div className="flex gap-2">
+              {themesList.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setTheme?.(t.id)}
+                  className={`h-5 w-5 rounded-full ${t.color} border border-white/20 transition-transform hover:scale-125 ${
+                    currentTheme === t.id ? 'ring-2 ring-[var(--accent)] ring-offset-2 ring-offset-[var(--surface)] scale-110' : ''
+                  }`}
+                  title={t.name}
+                />
+              ))}
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 rounded-2xl bg-slate-700 text-slate-100 font-semibold shadow-xl shadow-slate-900/30 hover:bg-slate-600 transition disabled:opacity-50 disabled:pointer-events-none"
-          >
-            {loading ? 'Registering...' : 'Register'}
-          </button>
-
-          <div className="text-center mt-4">
-            <span className="text-gray-400">
-              Already have an account?{" "}
-            </span>
-
-            <Link
-              to="/login"
-              className="text-slate-300 hover:text-slate-100 font-semibold"
-            >
-              Sign In
-            </Link>
-          </div>
-
-        </form>
+        </div>
       </div>
     </div>
   );

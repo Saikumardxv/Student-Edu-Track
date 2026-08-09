@@ -30,6 +30,11 @@ app.use(cookieParser());
 // Serve static uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+// Root Health Check Route
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', message: 'EduTrack API is running' });
+});
+
 // Routes
 app.use('/api/auth', authRouter);
 app.use('/api/admin', adminRouter);
@@ -46,6 +51,10 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+export default app;
