@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "framework": "other",
   "installCommand": "npm run install:all",
   "buildCommand": "npm run vercel-build",
   "functions": {
