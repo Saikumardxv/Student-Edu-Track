@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { 
-  Users, Search, Filter, Plus, Edit2, Trash2, 
+  Users, Plus, Edit2, Trash2, 
   X, Loader2, UserCheck, AlertTriangle
 } from 'lucide-react';
 import api from '../../utils/api';
@@ -31,12 +31,19 @@ interface Department {
   code: string;
 }
 
+interface Semester {
+  id: number;
+  number: number;
+  year: number;
+}
+
 const ManageStudents: React.FC = () => {
   const location = useLocation();
   
   // Lists
   const [students, setStudents] = useState<StudentData[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);
+  const [semesters, setSemesters] = useState<Semester[]>([]);
   
   // Loaders & Errors
   const [loading, setLoading] = useState(true);
@@ -64,12 +71,14 @@ const ManageStudents: React.FC = () => {
   // Fetch initial data
   const fetchData = async () => {
     try {
-      const [stuRes, deptRes] = await Promise.all([
+      const [stuRes, deptRes, semRes] = await Promise.all([
         api.get('/admin/students'),
-        api.get('/admin/departments')
+        api.get('/admin/departments'),
+        api.get('/admin/semesters'),
       ]);
       setStudents(stuRes.data);
       setDepartments(deptRes.data);
+      setSemesters(semRes.data);
     } catch (err) {
       console.error(err);
       setToast({ id: Date.now().toString(), type: 'error', text: 'Failed to fetch students data' });
@@ -242,26 +251,24 @@ const ManageStudents: React.FC = () => {
 
       {/* Filter Toolbar */}
       <div className="glass-panel p-4 rounded-xl flex flex-col md:flex-row gap-4 items-center justify-between">
-        <div className="relative w-full md:max-w-md">
-          <Search className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+        <div className="w-full md:max-w-md">
           <input
             type="text"
             placeholder="Search student by name, email, roll number..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="glass-input w-full pl-10"
+            className="glass-input w-full pl-4"
           />
         </div>
 
         <div className="flex gap-3 w-full md:w-auto items-center">
-          <Filter className="h-4 w-4 text-slate-500 shrink-0 hidden sm:block" />
           <select
             value={selectedDept === 'ALL' ? 'ALL' : selectedDept}
             onChange={(e) => {
               const val = e.target.value;
               setSelectedDept(val === 'ALL' ? 'ALL' : Number(val));
             }}
-            className="glass-input w-full md:w-56"
+            className="glass-input appearance-none w-full md:w-56 pl-4"
           >
             <option value="ALL">All Departments</option>
             {departments.map((dept) => (
@@ -431,11 +438,21 @@ const ManageStudents: React.FC = () => {
                   <select
                     value={currentSemester}
                     onChange={(e) => setCurrentSemester(Number(e.target.value))}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full pl-4"
                     disabled={submitting}
                   >
-                    <option value={1}>Semester 1</option>
-                    <option value={2}>Semester 2</option>
+                    {semesters.length > 0 ? (
+                      semesters.map((sem) => (
+                        <option key={sem.id} value={sem.number}>
+                          Semester {sem.number} - Year {sem.year}
+                        </option>
+                      ))
+                    ) : (
+                      <>
+                        <option value={1}>Semester 1</option>
+                        <option value={2}>Semester 2</option>
+                      </>
+                    )}
                   </select>
                 </div>
               </div>
@@ -534,11 +551,21 @@ const ManageStudents: React.FC = () => {
                   <select
                     value={currentSemester}
                     onChange={(e) => setCurrentSemester(Number(e.target.value))}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full pl-4"
                     disabled={submitting}
                   >
-                    <option value={1}>Semester 1</option>
-                    <option value={2}>Semester 2</option>
+                    {semesters.length > 0 ? (
+                      semesters.map((sem) => (
+                        <option key={sem.id} value={sem.number}>
+                          Semester {sem.number} - Year {sem.year}
+                        </option>
+                      ))
+                    ) : (
+                      <>
+                        <option value={1}>Semester 1</option>
+                        <option value={2}>Semester 2</option>
+                      </>
+                    )}
                   </select>
                 </div>
               </div>

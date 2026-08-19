@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { User, Mail, Lock, Eye, EyeOff, GraduationCap, Palette } from "lucide-react";
+import { Eye, EyeOff, GraduationCap, Palette } from "lucide-react";
 import api from "../utils/api";
 import { ThemeContext, Theme } from "../context/ThemeContext";
 
@@ -140,8 +140,7 @@ const Register: React.FC = () => {
               <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
                 Full Name
               </label>
-              <div className="relative mt-1">
-                <User className="absolute left-3 top-3 text-[var(--text-muted)] w-5 h-5" />
+              <div className="mt-1">
                 <input
                   type="text"
                   name="name"
@@ -149,7 +148,7 @@ const Register: React.FC = () => {
                   placeholder="Enter your name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full glass-input pl-11"
+                  className="w-full glass-input pl-4"
                 />
               </div>
             </div>
@@ -159,8 +158,7 @@ const Register: React.FC = () => {
               <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
                 Email Address
               </label>
-              <div className="relative mt-1">
-                <Mail className="absolute left-3 top-3 text-[var(--text-muted)] w-5 h-5" />
+              <div className="mt-1">
                 <input
                   type="email"
                   name="email"
@@ -168,7 +166,7 @@ const Register: React.FC = () => {
                   placeholder="Enter email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full glass-input pl-11"
+                  className="w-full glass-input pl-4"
                 />
               </div>
             </div>
@@ -198,7 +196,7 @@ const Register: React.FC = () => {
                 name="departmentId"
                 value={formData.departmentId}
                 onChange={handleChange}
-                className="w-full glass-input block bg-[var(--input-bg)]"
+                className="w-full glass-input appearance-none block bg-[var(--input-bg)]"
                 required
               >
                 <option value="" className="theme-surface">Select department</option>
@@ -219,7 +217,7 @@ const Register: React.FC = () => {
                 name="currentSemester"
                 value={formData.currentSemester}
                 onChange={handleChange}
-                className="w-full glass-input block bg-[var(--input-bg)]"
+                className="w-full glass-input appearance-none block bg-[var(--input-bg)]"
                 required
               >
                 <option value="" className="theme-surface">Select semester</option>
@@ -237,7 +235,6 @@ const Register: React.FC = () => {
                 Password
               </label>
               <div className="relative mt-1">
-                <Lock className="absolute left-3 top-3 text-[var(--text-muted)] w-5 h-5" />
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
@@ -245,7 +242,7 @@ const Register: React.FC = () => {
                   placeholder="Enter password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full glass-input pl-11 pr-12"
+                  className="w-full glass-input pl-4 pr-12"
                 />
                 <button
                   type="button"
@@ -266,8 +263,7 @@ const Register: React.FC = () => {
               <label className="text-[var(--text-muted)] text-xs font-semibold uppercase tracking-wider">
                 Confirm Password
               </label>
-              <div className="relative mt-1">
-                <Lock className="absolute left-3 top-3 text-[var(--text-muted)] w-5 h-5" />
+              <div className="mt-1">
                 <input
                   type="password"
                   name="confirmPassword"
@@ -275,7 +271,7 @@ const Register: React.FC = () => {
                   placeholder="Confirm password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="w-full glass-input pl-11"
+                  className="w-full glass-input pl-4"
                 />
               </div>
             </div>

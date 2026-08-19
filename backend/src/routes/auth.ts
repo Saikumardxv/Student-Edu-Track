@@ -63,7 +63,7 @@ router.post('/login', async (req: Request, res: Response) => {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -88,6 +88,7 @@ router.post('/login', async (req: Request, res: Response) => {
 
     return res.status(200).json({
       accessToken,
+      refreshToken,
       user: {
         id: user.id,
         name: user.name,
@@ -109,7 +110,7 @@ router.post('/logout', (req: Request, res: Response) => {
   res.clearCookie('refreshToken', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    sameSite: 'lax',
   });
   return res.status(200).json({ message: 'Logged out successfully' });
 });
@@ -155,7 +156,7 @@ router.post('/refresh', async (req: Request, res: Response) => {
     res.cookie('refreshToken', tokens.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -239,6 +240,17 @@ router.post('/register', async (req: Request, res: Response) => {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
+  const departmentIdNum = Number(departmentId);
+  const currentSemesterId = Number(currentSemester);
+
+  if (!Number.isInteger(departmentIdNum) || departmentIdNum <= 0) {
+    return res.status(400).json({ message: 'Invalid department selected' });
+  }
+
+  if (!Number.isInteger(currentSemesterId) || currentSemesterId <= 0) {
+    return res.status(400).json({ message: 'Invalid semester selected' });
+  }
+
   try {
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
@@ -250,16 +262,18 @@ router.post('/register', async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Roll number already exists' });
     }
 
-    const department = await prisma.department.findUnique({ where: { id: Number(departmentId) } });
+    const department = await prisma.department.findUnique({ where: { id: departmentIdNum } });
     if (!department) {
       return res.status(400).json({ message: 'Invalid department selected' });
     }
 
-    const semester = await prisma.semester.findUnique({ where: { id: Number(currentSemester) } });
+    const semester = await prisma.semester.findUnique({ where: { id: currentSemesterId } });
     if (!semester) {
       return res.status(400).json({ message: 'Invalid semester selected' });
     }
 
+    const selectedSemesterId = semester.id;
+    const currentSemesterNumber = semester.number;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const student = await prisma.$transaction(async (tx) => {
@@ -278,14 +292,14 @@ router.post('/register', async (req: Request, res: Response) => {
           userId: user.id,
           rollNumber,
           departmentId: department.id,
-          currentSemester: Number(currentSemester),
+          currentSemester: currentSemesterNumber,
         },
       });
 
       const subjects = await tx.subject.findMany({
         where: {
           departmentId: department.id,
-          semesterId: Number(currentSemester),
+          semesterId: selectedSemesterId,
         },
       });
 
@@ -294,7 +308,7 @@ router.post('/register', async (req: Request, res: Response) => {
           data: subjects.map((subject) => ({
             studentId: newStudent.id,
             subjectId: subject.id,
-            semesterId: Number(currentSemester),
+            semesterId: currentSemesterId,
           })),
         });
       }
@@ -305,6 +319,12 @@ router.post('/register', async (req: Request, res: Response) => {
     return res.status(201).json({ message: 'Registration successful', student });
   } catch (error: any) {
     console.error('Registration error:', error);
+    if (error.code === 'P2002') {
+      const target = Array.isArray(error.meta?.target)
+        ? error.meta.target.join(', ')
+        : error.meta?.target;
+      return res.status(400).json({ message: `Duplicate field error: ${target}` });
+    }
     return res.status(500).json({ message: 'Internal server error' });
   }
 });

@@ -159,29 +159,24 @@ const ManageDepartments: React.FC = () => {
         
         <h3 className="text-lg font-bold text-slate-200 flex items-center gap-2 mb-4">
           <Calendar className="h-5 w-5 text-slate-400" />
-          Curriculum Semesters
+          B.Tech Curriculum Semesters
         </h3>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-850 flex justify-between items-center">
-            <div>
-              <h4 className="font-bold text-slate-200">Semester 1</h4>
-              <p className="text-xs text-slate-500 mt-0.5">Academic Year: 2026</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[...Array(8)].map((_, index) => (
+            <div
+              key={index}
+              className="p-4 rounded-xl bg-slate-900/40 border border-slate-850 flex flex-col justify-between"
+            >
+              <div>
+                <h4 className="font-bold text-slate-200">Semester {index + 1}</h4>
+                <p className="text-xs text-slate-500 mt-0.5">B.Tech core program</p>
+              </div>
+              <span className="mt-4 inline-flex items-center justify-center text-[10px] font-semibold text-slate-400 bg-slate-900/10 border border-slate-800500/20 px-2.5 py-1 rounded-full">
+                Year {2026 + Math.floor(index / 2)}
+              </span>
             </div>
-            <span className="text-xs font-semibold text-slate-400 bg-slate-900/10 border border-slate-800500/20 px-2.5 py-1 rounded-full">
-              Active Session
-            </span>
-          </div>
-
-          <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-850 flex justify-between items-center">
-            <div>
-              <h4 className="font-bold text-slate-200">Semester 2</h4>
-              <p className="text-xs text-slate-500 mt-0.5">Academic Year: 2026</p>
-            </div>
-            <span className="text-xs font-semibold text-slate-400 bg-slate-900/10 border border-slate-800500/20 px-2.5 py-1 rounded-full">
-              Active Session
-            </span>
-          </div>
+          ))}
         </div>
       </div>
 

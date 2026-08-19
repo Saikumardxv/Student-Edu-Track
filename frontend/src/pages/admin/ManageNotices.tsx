@@ -101,10 +101,10 @@ const ManageNotices: React.FC = () => {
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
             <Megaphone className="h-8 w-8 text-slate-500" />
-            Announcement Manager
+            Daily College Notices
           </h1>
           <p className="text-slate-400 text-sm mt-1">
-            Broadcast messages, calendar events, and notifications to students and staff.
+            Manage and publish daily campus notices, maintenance updates, and student announcements.
           </p>
         </div>
         <button
@@ -207,7 +207,7 @@ const ManageNotices: React.FC = () => {
                   <select
                     value={targetRole}
                     onChange={(e) => setTargetRole(e.target.value)}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full"
                     disabled={submitting}
                   >
                     <option value="">All Roles</option>
@@ -221,7 +221,7 @@ const ManageNotices: React.FC = () => {
                   <select
                     value={departmentId}
                     onChange={(e) => setDepartmentId(e.target.value ? Number(e.target.value) : '')}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full"
                     disabled={submitting}
                   >
                     <option value="">All Departments</option>

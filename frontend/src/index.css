@@ -194,6 +194,30 @@
   padding: 0.5rem 0.75rem;
   color: var(--text-primary);
   transition: all 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+}
+.glass-input::-ms-clear,
+.glass-input::-ms-expand,
+.glass-input::-webkit-outer-spin-button,
+.glass-input::-webkit-inner-spin-button,
+.glass-input::-webkit-search-decoration,
+.glass-input::-webkit-search-cancel-button,
+.glass-input::-webkit-search-results-button,
+.glass-input::-webkit-search-results-decoration {
+  appearance: none;
+  display: none;
+}
+input[type="password"].glass-input::-ms-reveal,
+input[type="password"].glass-input::-ms-clear,
+input[type="password"].glass-input::-webkit-password-reveal-button,
+input[type="password"].glass-input::-webkit-credentials-auto-fill-button {
+  display: none !important;
+}
+select.glass-input {
+  background-image: none !important;
 }
 .glass-input:focus {
   border-color: var(--accent);

@@ -39,7 +39,12 @@ const Login: React.FC = () => {
 
     try {
       if (auth) {
-        await auth.login(email, password);
+        const loggedUser: any = await auth.login(email, password);
+        if (loggedUser) {
+          if (loggedUser.role === 'ADMIN') navigate('/admin/dashboard', { replace: true });
+          else if (loggedUser.role === 'FACULTY') navigate('/faculty/dashboard', { replace: true });
+          else navigate('/student/dashboard', { replace: true });
+        }
       }
     } catch (err: any) {
       console.error(err);
@@ -116,7 +121,7 @@ const Login: React.FC = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="glass-input w-full pr-10"
+                  className="glass-input appearance-none w-full pr-10"
                   placeholder="••••••••"
                   disabled={loading}
                 />

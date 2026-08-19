@@ -299,7 +299,7 @@ const ManageSubjects: React.FC = () => {
                   <select
                     value={departmentId}
                     onChange={(e) => setDepartmentId(Number(e.target.value))}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full"
                     disabled={submitting}
                   >
                     <option value="">Select Department</option>
@@ -318,7 +318,7 @@ const ManageSubjects: React.FC = () => {
                   <select
                     value={semesterId}
                     onChange={(e) => setSemesterId(Number(e.target.value))}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full"
                     disabled={submitting}
                   >
                     <option value="">Select Semester</option>
@@ -335,7 +335,7 @@ const ManageSubjects: React.FC = () => {
                   <select
                     value={facultyId}
                     onChange={(e) => setFacultyId(e.target.value ? Number(e.target.value) : '')}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full"
                     disabled={submitting}
                   >
                     <option value="">Unassigned</option>

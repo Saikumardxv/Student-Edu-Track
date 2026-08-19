@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Calendar, Building2, Plus, Trash2, Save, Loader2, Clock, MapPin
+import {
+  Calendar, Plus, Trash2, Save, Loader2, Clock, MapPin
 } from 'lucide-react';
 import api from '../../utils/api';
 import Toast, { ToastMessage } from '../../components/Toast';
@@ -207,24 +207,21 @@ const ManageTimetable: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase text-slate-400">Department</label>
-            <div className="relative">
-              <Building2 className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
-              <select
-                value={selectedDept}
-                onChange={(e) => {
-                  setSelectedDept(e.target.value ? Number(e.target.value) : '');
-                  setSubjectId('');
-                }}
-                className="glass-input w-full pl-10"
-              >
-                <option value="">Select Department</option>
-                {departments.map((dept) => (
-                  <option key={dept.id} value={dept.id}>
-                    {dept.code} - {dept.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <select
+              value={selectedDept}
+              onChange={(e) => {
+                setSelectedDept(e.target.value ? Number(e.target.value) : '');
+                setSubjectId('');
+              }}
+              className="glass-input appearance-none w-full pl-4"
+            >
+              <option value="">Select Department</option>
+              {departments.map((dept) => (
+                <option key={dept.id} value={dept.id}>
+                  {dept.code} - {dept.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="space-y-2">
@@ -235,7 +232,7 @@ const ManageTimetable: React.FC = () => {
                 setSelectedSem(e.target.value ? Number(e.target.value) : '');
                 setSubjectId('');
               }}
-              className="glass-input w-full"
+              className="glass-input appearance-none w-full pl-4"
             >
               <option value="">Select Semester</option>
               {semesters.map((sem) => (
@@ -266,7 +263,7 @@ const ManageTimetable: React.FC = () => {
                 <select
                   value={subjectId}
                   onChange={(e) => setSubjectId(Number(e.target.value))}
-                  className="glass-input w-full"
+                  className="glass-input appearance-none w-full pl-4"
                   required
                 >
                   <option value="">Select Course</option>
@@ -288,7 +285,7 @@ const ManageTimetable: React.FC = () => {
                 <select
                   value={day}
                   onChange={(e) => setDay(e.target.value)}
-                  className="glass-input w-full"
+                  className="glass-input appearance-none w-full pl-4"
                   required
                 >
                   {daysOfWeek.map((d) => (
@@ -416,6 +413,7 @@ const ManageTimetable: React.FC = () => {
                   <Calendar className="h-12 w-12 text-slate-800 mb-2" />
                   <p className="text-sm">No slots added yet.</p>
                   <p className="text-xs text-slate-600 mt-1">Draft a timetable slot using the form on the left.</p>
+                  <p className="text-xs text-slate-600 mt-1">Daily maintenance review occurs at 9:30 PM, so make sure all changes are finalized before then.</p>
                 </div>
               )}
             </div>
@@ -427,6 +425,9 @@ const ManageTimetable: React.FC = () => {
           <Calendar className="h-14 w-14 text-slate-700 mb-3" />
           <h3 className="text-lg font-bold text-slate-350">Timetable Planner Inactive</h3>
           <p className="text-sm mt-1">Please select a Department and Semester from the selectors above.</p>
+          <p className="text-xs text-slate-500 mt-3 max-w-md text-center">
+            Daily maintenance window: timetable updates are reviewed every evening from 9:30 PM to 10:30 PM. Plan your schedule changes before the maintenance checkpoint.
+          </p>
         </div>
       )}
 

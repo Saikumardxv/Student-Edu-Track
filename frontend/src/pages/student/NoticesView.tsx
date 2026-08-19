@@ -47,10 +47,10 @@ const NoticesView: React.FC = () => {
       <div>
         <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
           <BellRing className="h-8 w-8 text-slate-100" />
-          Announcements & Notice Board
+          Daily College Notices
         </h1>
         <p className="text-slate-400 text-sm mt-1">
-          Stay updated with important announcements and department advisories.
+          Stay updated with daily campus alerts, service notices, and maintenance information.
         </p>
       </div>
 

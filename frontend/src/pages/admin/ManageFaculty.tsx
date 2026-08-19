@@ -214,7 +214,7 @@ const ManageFaculty: React.FC = () => {
               const val = e.target.value;
               setSelectedDept(val === 'ALL' ? 'ALL' : Number(val));
             }}
-            className="glass-input w-full md:w-56"
+            className="glass-input appearance-none w-full md:w-56"
           >
             <option value="ALL">All Departments</option>
             {departments.map((dept) => (
