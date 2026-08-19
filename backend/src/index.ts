@@ -17,7 +17,9 @@ import noticeRouter from './routes/notice';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const frontendDistPath = path.join(__dirname, '../../frontend/dist');
+const frontendDistPath = process.env.VERCEL
+  ? path.join(process.cwd(), 'public')
+  : path.join(__dirname, '../../frontend/dist');
 const frontendOrigin = process.env.FRONTEND_URL;
 
 // Middleware
