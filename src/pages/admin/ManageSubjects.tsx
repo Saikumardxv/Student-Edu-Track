@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  BookOpen, Search, Plus, Loader2, X, GraduationCap 
+  BookOpen, Plus, Loader2, X, GraduationCap 
 } from 'lucide-react';
 import api from '../../utils/api';
 import { TableSkeleton } from '../../components/Skeleton';
@@ -148,7 +148,7 @@ const ManageSubjects: React.FC = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-100 flex items-center gap-3">
-            <BookOpen className="h-8 w-8 text-brand-500" />
+            <BookOpen className="h-8 w-8 text-slate-500" />
             Manage Subjects
           </h1>
           <p className="text-slate-400 text-sm mt-1">
@@ -157,7 +157,7 @@ const ManageSubjects: React.FC = () => {
         </div>
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="flex items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/10 active:scale-95 transition-all"
+          className="flex items-center gap-2 rounded-lg bg-slate-600 hover:bg-slate-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 active:scale-95 transition-all"
         >
           <Plus className="h-4 w-4" />
           Add Subject
@@ -166,14 +166,13 @@ const ManageSubjects: React.FC = () => {
 
       {/* Toolbar */}
       <div className="glass-panel p-4 rounded-xl">
-        <div className="relative w-full md:max-w-md">
-          <Search className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+        <div className="w-full md:max-w-md">
           <input
             type="text"
             placeholder="Search subjects by name, code, department, faculty..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="glass-input w-full pl-10"
+            className="glass-input w-full pl-4"
           />
         </div>
       </div>
@@ -204,7 +203,7 @@ const ManageSubjects: React.FC = () => {
                     <td className="py-4 px-6 text-slate-350 font-medium">
                       {sub.name}
                     </td>
-                    <td className="py-4 px-6 text-center font-semibold text-brand-400">
+                    <td className="py-4 px-6 text-center font-semibold text-slate-400">
                       {sub.credits}
                     </td>
                     <td className="py-4 px-6">
@@ -218,7 +217,7 @@ const ManageSubjects: React.FC = () => {
                     <td className="py-4 px-6 text-slate-400">
                       {sub.faculty ? (
                         <div className="flex items-center gap-1.5 text-slate-350">
-                          <GraduationCap className="h-4 w-4 text-brand-400" />
+                          <GraduationCap className="h-4 w-4 text-slate-400" />
                           <span>{sub.faculty.user.name}</span>
                         </div>
                       ) : (
@@ -243,7 +242,7 @@ const ManageSubjects: React.FC = () => {
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 animate-fade-in">
           <div className="glass-panel w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl relative">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-700500/50 to-transparent" />
             
             <div className="flex justify-between items-center p-6 border-b border-slate-800/80 bg-slate-900/20">
               <h3 className="text-lg font-bold text-slate-200">Register New Subject</h3>
@@ -299,7 +298,7 @@ const ManageSubjects: React.FC = () => {
                   <select
                     value={departmentId}
                     onChange={(e) => setDepartmentId(Number(e.target.value))}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full"
                     disabled={submitting}
                   >
                     <option value="">Select Department</option>
@@ -318,7 +317,7 @@ const ManageSubjects: React.FC = () => {
                   <select
                     value={semesterId}
                     onChange={(e) => setSemesterId(Number(e.target.value))}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full"
                     disabled={submitting}
                   >
                     <option value="">Select Semester</option>
@@ -335,7 +334,7 @@ const ManageSubjects: React.FC = () => {
                   <select
                     value={facultyId}
                     onChange={(e) => setFacultyId(e.target.value ? Number(e.target.value) : '')}
-                    className="glass-input w-full"
+                    className="glass-input appearance-none w-full"
                     disabled={submitting}
                   >
                     <option value="">Unassigned</option>
@@ -359,7 +358,7 @@ const ManageSubjects: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-500/10"
+                  className="flex items-center gap-1.5 rounded-lg bg-slate-600 hover:bg-slate-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-slate-900/10"
                   disabled={submitting}
                 >
                   {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
