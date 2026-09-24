@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AlertTriangle, Search, BookOpen, Loader2, AlertCircle, Mail } from 'lucide-react';
+import { AlertTriangle, BookOpen, Loader2, AlertCircle, Mail } from 'lucide-react';
 import api from '../../utils/api';
 import Toast, { ToastMessage } from '../../components/Toast';
 
@@ -135,14 +135,13 @@ const DefaultersList: React.FC = () => {
             </div>
 
             {/* Local Search inside report */}
-            <div className="relative w-full sm:max-w-xs">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+            <div className="w-full sm:max-w-xs">
               <input
                 type="text"
                 placeholder="Search defaulter student..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="glass-input w-full pl-10 py-1.5"
+                className="glass-input w-full pl-4 py-1.5"
               />
             </div>
           </div>
