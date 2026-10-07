@@ -1,17 +1,24 @@
 {
-  "cleanUrls": true,
+  "version": 2,
+  "installCommand": "npm run install:all",
+  "buildCommand": "npm run vercel-build",
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": "public/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://your-backend-name.onrender.com/api/:path*"
+      "destination": "/api"
     },
     {
       "source": "/uploads/:path*",
-      "destination": "https://your-backend-name.onrender.com/uploads/:path*"
+      "destination": "/api"
     },
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/api"
     }
   ]
 }

@@ -14,7 +14,7 @@ export const setAccessToken = (token: string) => {
 export const getAccessToken = () => accessToken;
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: '/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -37,12 +37,35 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    // On 401, clear auth and redirect to login (no refresh flow)
-    if (error.response?.status === 401) {
-      setAccessToken('');
-      localStorage.removeItem('user');
-      if (!window.location.pathname.endsWith('/login')) {
-        window.location.href = '/login';
+    const originalRequest = error.config;
+    
+    // Prevent infinite loop if refresh itself fails (e.g. refresh request returns 401)
+    if (originalRequest.url === '/auth/refresh') {
+      return Promise.reject(error);
+    }
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
+        // Request a new access token
+        const refreshResponse = await axios.post('/api/auth/refresh', {}, { withCredentials: true });
+        const { accessToken: newAccessToken } = refreshResponse.data;
+        
+        setAccessToken(newAccessToken);
+        
+        // Update header and retry the original request
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return api(originalRequest);
+      } catch (refreshError) {
+        // Refresh token expired or invalid, log out
+        setAccessToken('');
+        localStorage.removeItem('user');
+        
+        // Only redirect if not already on the login page
+        if (!window.location.pathname.endsWith('/login')) {
+          window.location.href = '/login';
+        }
+        return Promise.reject(refreshError);
       }
     }
     return Promise.reject(error);

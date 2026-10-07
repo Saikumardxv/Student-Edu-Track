@@ -34,16 +34,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     const initializeAuth = async () => {
       try {
-        // Initialize from stored access token and user (no refresh token flow)
-        const storedUser = localStorage.getItem('user');
-        const storedAccess = localStorage.getItem('accessToken');
-        if (storedUser && storedAccess) {
-          setAccessToken(storedAccess);
-          setUser(JSON.parse(storedUser));
-        } else {
-          setAccessToken('');
-          setUser(null);
-        }
+        const response = await api.post('/auth/refresh');
+        const { accessToken, user: userData } = response.data;
+        setAccessToken(accessToken);
+        setUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
       } catch (err) {
         setAccessToken('');
         localStorage.removeItem('user');
@@ -62,7 +57,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setAccessToken(accessToken);
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
-    return userData;
   };
 
   const logout = async () => {

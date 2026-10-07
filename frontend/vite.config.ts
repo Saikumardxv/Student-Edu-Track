@@ -1,29 +1,23 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, "..", "");
+export default defineConfig({
+  plugins: [react()],
 
-  return {
-    plugins: [react()],
-    envDir: "..",
+  // Required for GitHub Pages
+  base: "/Student-Edutrack/",
 
-    // Use root path in development/Vercel and GitHub Pages base path in production
-    base: (mode === 'production' && !process.env.VERCEL) ? '/Student-Edutrack/' : '/',
-
-    server: {
-      host: env.VITE_HOST || "localhost",
-      port: Number(env.VITE_PORT || 5173),
-      proxy: {
-        "/api": {
-          target: env.VITE_BACKEND_URL || "http://localhost:5000",
-          changeOrigin: true,
-        },
-        "/uploads": {
-          target: env.VITE_BACKEND_URL || "http://localhost:5000",
-          changeOrigin: true,
-        },
+  server: {
+    port: 5173,
+    proxy: {
+      "/api": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
+      "/uploads": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
       },
     },
-  };
+  },
 });
