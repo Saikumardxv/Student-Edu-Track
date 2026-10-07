@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  BookOpen, Plus, Loader2, X, GraduationCap 
+  BookOpen, Search, Plus, Loader2, X, GraduationCap 
 } from 'lucide-react';
 import api from '../../utils/api';
 import { TableSkeleton } from '../../components/Skeleton';
@@ -166,13 +166,14 @@ const ManageSubjects: React.FC = () => {
 
       {/* Toolbar */}
       <div className="glass-panel p-4 rounded-xl">
-        <div className="w-full md:max-w-md">
+        <div className="relative w-full md:max-w-md">
+          <Search className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
           <input
             type="text"
             placeholder="Search subjects by name, code, department, faculty..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="glass-input w-full pl-4"
+            className="glass-input w-full pl-10"
           />
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  GraduationCap, Filter, Plus, Edit2, 
+  GraduationCap, Search, Filter, Plus, Edit2, 
   X, Loader2, BookOpen
 } from 'lucide-react';
 import api from '../../utils/api';
@@ -195,13 +195,14 @@ const ManageFaculty: React.FC = () => {
 
       {/* Filters */}
       <div className="glass-panel p-4 rounded-xl flex flex-col md:flex-row gap-4 items-center justify-between">
-        <div className="w-full md:max-w-md">
+        <div className="relative w-full md:max-w-md">
+          <Search className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
           <input
             type="text"
             placeholder="Search staff by name, email, employee ID..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="glass-input w-full pl-4"
+            className="glass-input w-full pl-10"
           />
         </div>
 
