@@ -38,6 +38,41 @@
   @apply bg-slate-950/50 border border-slate-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-brand-500/60 focus:border-brand-500 text-slate-100 transition-all duration-200 placeholder-slate-500;
 }
 
+/* Remove browser-injected icons from all inputs */
+.glass-input::-webkit-search-decoration,
+.glass-input::-webkit-search-cancel-button,
+.glass-input::-webkit-search-results-button,
+.glass-input::-webkit-search-results-decoration,
+.glass-input::-webkit-credentials-auto-fill-button,
+.glass-input::-webkit-contacts-auto-fill-button,
+.glass-input::-webkit-caps-lock-indicator,
+.glass-input::-ms-reveal,
+.glass-input::-ms-clear {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Remove number input spinners */
+.glass-input[type=number]::-webkit-inner-spin-button,
+.glass-input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.glass-input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Suppress autofill background color override */
+.glass-input:-webkit-autofill,
+.glass-input:-webkit-autofill:hover,
+.glass-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #03061a inset !important;
+  -webkit-text-fill-color: #f1f5f9 !important;
+  caret-color: #f1f5f9;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
